@@ -15,19 +15,57 @@
 }
 
 body{
-    background:#07070a;
+    background:#111217;
     color:white;
     overflow:hidden;
 }
+
+/* FONDO ANIMADO */
 
 .background{
     position:absolute;
     width:100%;
     height:100%;
-    background:
-    radial-gradient(circle at top,#7e22ce33 0%, transparent 40%),
-    radial-gradient(circle at bottom,#581c8733 0%, transparent 40%);
+    overflow:hidden;
     z-index:-1;
+}
+
+.glow{
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:#7e22ce;
+    border-radius:50%;
+    filter:blur(140px);
+    opacity:.22;
+    animation:float 6s ease-in-out infinite;
+}
+
+.glow1{
+    top:-150px;
+    left:-100px;
+}
+
+.glow2{
+    bottom:-150px;
+    right:-100px;
+    animation-delay:3s;
+}
+
+@keyframes float{
+
+    0%{
+        transform:scale(1) translateY(0px);
+    }
+
+    50%{
+        transform:scale(1.1) translateY(20px);
+    }
+
+    100%{
+        transform:scale(1) translateY(0px);
+    }
+
 }
 
 .container{
@@ -40,54 +78,69 @@ body{
     padding:20px;
 }
 
+/* LOGO */
+
 .logo{
-    width:140px;
+    width:180px;
     margin-bottom:20px;
-    filter:drop-shadow(0 0 20px #9333ea);
+    filter:drop-shadow(0 0 25px #9333ea);
 }
 
+/* TITULO */
+
 h1{
-    font-size:95px;
-    color:#d8b4fe;
-    text-shadow:0 0 25px #9333ea;
+    font-size:100px;
+    color:#e9d5ff;
+    text-shadow:0 0 30px #9333ea;
     letter-spacing:6px;
 }
 
+/* SUB */
+
 .subtitle{
-    font-size:28px;
+    font-size:30px;
     color:#d1d5db;
     margin-top:10px;
 }
 
+/* VERSION */
+
 .version{
-    margin-top:15px;
+    margin-top:18px;
     color:#9ca3af;
-    font-size:18px;
+    font-size:20px;
 }
+
+/* CAJA IP */
 
 .ip-box{
     margin-top:35px;
-    background:#111118;
+    background:#1a1b22;
     border:1px solid #7e22ce;
-    border-radius:14px;
-    padding:18px 25px;
+    border-radius:18px;
+    padding:22px 28px;
     display:flex;
     align-items:center;
-    gap:20px;
-    box-shadow:0 0 20px #581c87aa;
+    gap:25px;
+    box-shadow:0 0 25px #581c8799;
 }
 
+/* TEXTO IP */
+
 .ip{
-    font-size:20px;
+    font-size:22px;
     color:white;
 }
+
+/* BOTON COPIAR */
 
 .copy-btn{
     background:#7e22ce;
     border:none;
-    padding:12px 22px;
-    border-radius:10px;
+    padding:16px 30px;
+    border-radius:12px;
     color:white;
+    font-size:16px;
     font-weight:bold;
     cursor:pointer;
     transition:.3s;
@@ -95,44 +148,45 @@ h1{
 
 .copy-btn:hover{
     background:#9333ea;
-    transform:scale(1.05);
+    transform:scale(1.06);
+    box-shadow:0 0 20px #9333ea;
 }
 
+/* BOTONES */
+
 .buttons{
-    margin-top:35px;
+    margin-top:40px;
     display:flex;
-    gap:18px;
+    gap:20px;
     flex-wrap:wrap;
     justify-content:center;
 }
 
 .btn{
     text-decoration:none;
-    padding:14px 30px;
-    border-radius:12px;
-    background:#111118;
+    padding:18px 38px;
+    border-radius:14px;
+    background:#1a1b22;
     border:1px solid #7e22ce;
     color:white;
     transition:.3s;
     font-weight:bold;
+    font-size:18px;
+    min-width:170px;
 }
 
 .btn:hover{
     background:#7e22ce;
-    transform:translateY(-3px);
-    box-shadow:0 0 15px #9333ea;
+    transform:translateY(-4px);
+    box-shadow:0 0 20px #9333ea;
 }
 
-.copy-message{
-    margin-top:15px;
-    color:#a78bfa;
-    font-size:14px;
-}
+/* RESPONSIVE */
 
 @media(max-width:700px){
 
     h1{
-        font-size:60px;
+        font-size:65px;
     }
 
     .subtitle{
@@ -149,7 +203,12 @@ h1{
 </head>
 <body>
 
-<div class="background"></div>
+<div class="background">
+
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+
+</div>
 
 <div class="container">
 
@@ -176,10 +235,6 @@ h1{
             Copiar IP
         </button>
 
-    </div>
-
-    <div class="copy-message" id="copyText">
-        Haz click para copiar la IP
     </div>
 
     <div class="buttons">
@@ -209,9 +264,6 @@ h1{
 function copyIP(){
 
     navigator.clipboard.writeText("play.kubeon.xyz");
-
-    document.getElementById("copyText").innerText =
-    "IP copiada correctamente";
 
 }
 
