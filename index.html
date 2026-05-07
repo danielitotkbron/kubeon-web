@@ -64,7 +64,6 @@ body{
 
 /* CONTENIDO (SUBIDO) */
 .container{
-
     height:100vh;
     display:flex;
     justify-content:center;
@@ -72,40 +71,39 @@ body{
     flex-direction:column;
     text-align:center;
     padding:20px;
-    transform:translateY(-85px); /* 👈 más arriba */
-
+    transform:translateY(-85px);
 }
 
-/* LOGO CON RESPIRACIÓN */
-.logo{
-
-    width:460px; /* 👈 tamaño más grande */
-
+/* WRAPPER LOGO (ANIMACIÓN CORRECTA) */
+.logo-wrap{
+    width:460px;
     margin-bottom:8px;
-
-    filter:drop-shadow(0 0 25px rgba(147,51,234,.35));
-
     animation:breath 4s ease-in-out infinite;
-
 }
 
-@keyframes breath{
+/* LOGO */
+.logo{
+    width:100%;
+    filter:drop-shadow(0 0 18px rgba(147,51,234,.35));
+    transition:filter .3s ease;
+}
 
+/* SOLO HOVER DE LUZ (SIN TRANSFORM) */
+.logo:hover{
+    filter:drop-shadow(0 0 40px rgba(168,85,247,.6));
+}
+
+/* RESPIRACIÓN */
+@keyframes breath{
     0%{
         transform:scale(1);
-        filter:drop-shadow(0 0 18px rgba(147,51,234,.25));
     }
-
     50%{
         transform:scale(1.06);
-        filter:drop-shadow(0 0 40px rgba(168,85,247,.6));
     }
-
     100%{
         transform:scale(1);
-        filter:drop-shadow(0 0 18px rgba(147,51,234,.25));
     }
-
 }
 
 /* SUBTITULO */
@@ -127,9 +125,7 @@ body{
 
 /* IP BOX */
 .ip-box{
-
     margin-top:28px;
-
     background:rgba(18,18,25,.92);
     border:1px solid rgba(168,85,247,.4);
     border-radius:20px;
@@ -139,7 +135,6 @@ body{
     gap:22px;
     backdrop-filter:blur(10px);
     box-shadow:0 0 25px rgba(126,34,206,.18);
-
 }
 
 /* IP */
@@ -148,9 +143,8 @@ body{
     font-weight:700;
 }
 
-/* BOTÓN COPIAR */
+/* BOTÓN */
 .copy-btn{
-
     background:#7e22ce;
     border:none;
     padding:18px 34px;
@@ -159,7 +153,6 @@ body{
     font-size:17px;
     font-weight:700;
     cursor:pointer;
-
 }
 
 /* BOTONES (NO TOCAR) */
@@ -172,7 +165,6 @@ body{
 }
 
 .btn{
-
     text-decoration:none;
     padding:34px 75px;
     border-radius:22px;
@@ -182,7 +174,6 @@ body{
     font-size:25px;
     font-weight:700;
     min-width:280px;
-
 }
 
 .btn:hover{
@@ -193,13 +184,21 @@ body{
 /* RESPONSIVE */
 @media(max-width:900px){
 
-    .logo{ width:320px; }
+    .logo-wrap{
+        width:320px;
+    }
 
-    .ip-box{ flex-direction:column; }
+    .ip-box{
+        flex-direction:column;
+    }
 
-    .ip{ font-size:24px; }
+    .ip{
+        font-size:24px;
+    }
 
-    .container{ transform:translateY(-50px); }
+    .container{
+        transform:translateY(-50px);
+    }
 
 }
 
@@ -217,8 +216,10 @@ body{
 <!-- CONTENIDO -->
 <div class="container">
 
-    <!-- LOGO -->
-    <img src="logo.png" class="logo">
+    <!-- LOGO (ARREGLADO) -->
+    <div class="logo-wrap">
+        <img src="logo.png" class="logo">
+    </div>
 
     <!-- SUBTITULO -->
     <div class="subtitle">
@@ -259,22 +260,16 @@ async function copyIP(){
     const btn = document.querySelector(".copy-btn");
 
     try{
-
         await navigator.clipboard.writeText("play.kubeon.xyz");
-
         btn.innerText = "¡Copiado!";
-
         setTimeout(()=> btn.innerText = "Copiar IP", 3000);
-
     }catch(err){
-
         const input = document.createElement("input");
         document.body.appendChild(input);
         input.value = "play.kubeon.xyz";
         input.select();
         document.execCommand("copy");
         document.body.removeChild(input);
-
         btn.innerText = "¡Copiado!";
         setTimeout(()=> btn.innerText = "Copiar IP", 3000);
     }
