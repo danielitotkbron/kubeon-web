@@ -64,17 +64,20 @@ body{
 
 }
 
-/* CONTENIDO */
+/* CONTENIDO (SUBIDO MÁS ARRIBA) */
 .container{
 
     height:100vh;
+
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
     text-align:center;
     padding:20px;
-    transform:translateY(-55px);
+
+    margin-top:-60px; /* 👈 aquí se sube todo */
+
 }
 
 /* LOGO CON RESPIRACIÓN */
@@ -89,7 +92,6 @@ body{
 
 }
 
-/* ANIMACIÓN RESPIRAR */
 @keyframes breath{
 
     0%{
@@ -126,10 +128,11 @@ body{
     font-weight:500;
 }
 
-/* IP */
+/* IP BOX */
 .ip-box{
 
     margin-top:35px;
+
     background:rgba(18,18,25,.92);
     border:1px solid rgba(168,85,247,.4);
     border-radius:20px;
@@ -142,6 +145,7 @@ body{
 
 }
 
+/* IP TEXTO */
 .ip{
     font-size:30px;
     font-weight:700;
@@ -161,15 +165,18 @@ body{
 
 }
 
-/* BOTONES */
+/* BOTONES (NO TOCADOS) */
 .buttons{
+
     margin-top:28px;
     display:flex;
     gap:24px;
     flex-wrap:wrap;
     justify-content:center;
+
 }
 
+/* BOTONES */
 .btn{
 
     text-decoration:none;
@@ -199,6 +206,10 @@ body{
     .ip{ font-size:24px; }
 
     .btn{ width:100%; }
+
+    .container{
+        margin-top:-30px;
+    }
 
 }
 
