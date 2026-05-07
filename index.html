@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Kubeon</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -11,51 +15,64 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:'Montserrat', sans-serif;
 }
 
 body{
-    background:#111217;
+    background:#0b0c12;
     color:white;
     overflow:hidden;
 }
 
-/* FONDO ANIMADO */
+/* FONDO */
 .background{
     position:absolute;
     width:100%;
     height:100%;
     z-index:-1;
+    overflow:hidden;
 }
 
 .glow{
     position:absolute;
-    width:600px;
-    height:600px;
-    background:#7e22ce;
+    width:700px;
+    height:700px;
     border-radius:50%;
-    filter:blur(140px);
-    opacity:.22;
-    animation:float 6s ease-in-out infinite;
+    filter:blur(150px);
+    opacity:.18;
+    animation:float 7s ease-in-out infinite;
 }
 
 .glow1{
-    top:-150px;
-    left:-100px;
+    background:#7e22ce;
+    top:-250px;
+    left:-200px;
 }
 
 .glow2{
-    bottom:-150px;
-    right:-100px;
+    background:#581c87;
+    bottom:-250px;
+    right:-200px;
     animation-delay:3s;
 }
 
 @keyframes float{
-    0%{transform:scale(1) translateY(0px);}
-    50%{transform:scale(1.1) translateY(20px);}
-    100%{transform:scale(1) translateY(0px);}
+
+    0%{
+        transform:translateY(0px) scale(1);
+    }
+
+    50%{
+        transform:translateY(25px) scale(1.08);
+    }
+
+    100%{
+        transform:translateY(0px) scale(1);
+    }
+
 }
 
+/* CONTENEDOR */
 .container{
     height:100vh;
     display:flex;
@@ -68,107 +85,239 @@ body{
 
 /* LOGO */
 .logo{
-    width:467px;
-    margin-bottom:20px;
-    filter:drop-shadow(0 0 25px #9333ea);
+    width:340px;
+    margin-bottom:10px;
+
+    filter:drop-shadow(0 0 35px rgba(147,51,234,.55));
+
+    transition:
+    transform .3s ease,
+    filter .3s ease;
+}
+
+.logo:hover{
+    transform:scale(1.04);
+
+    filter:
+    drop-shadow(0 0 45px rgba(168,85,247,.8));
 }
 
 /* TITULO */
 h1{
-    font-size:100px;
-    color:#e9d5ff;
-    text-shadow:0 0 30px #9333ea;
-    letter-spacing:6px;
+    font-size:110px;
+    font-weight:800;
+
+    letter-spacing:4px;
+
+    color:#f3e8ff;
+
+    text-shadow:
+    0 0 10px rgba(168,85,247,.6),
+    0 0 30px rgba(168,85,247,.45),
+    0 0 60px rgba(168,85,247,.25);
 }
 
 /* SUBTITULO */
 .subtitle{
-    font-size:20px;
-    color:#d1d5db;
-    margin-top:10px;
+    margin-top:8px;
+
+    font-size:22px;
+    font-weight:600;
+
+    color:white;
+
+    opacity:.92;
 }
 
 /* VERSION */
 .version{
-    margin-top:10px;
+    margin-top:12px;
+
     color:#9ca3af;
-    font-size:20px;
+
+    font-size:18px;
+    font-weight:500;
 }
 
-/* IP BOX */
+/* CAJA IP */
 .ip-box{
-    margin-top:35px;
-    background:#1a1b22;
-    border:1px solid #7e22ce;
-    border-radius:18px;
-    padding:28px 40px;
+
+    margin-top:38px;
+
+    background:rgba(20,20,28,.92);
+
+    border:1px solid rgba(168,85,247,.55);
+
+    border-radius:22px;
+
+    padding:24px 28px;
+
     display:flex;
     align-items:center;
-    gap:25px;
-    box-shadow:0 0 25px #581c8799;
+    gap:22px;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 0 30px rgba(126,34,206,.22),
+    inset 0 0 15px rgba(255,255,255,.02);
+
+    transition:
+    transform .25s ease,
+    border .25s ease,
+    box-shadow .25s ease;
 }
 
-/* IP TEXTO */
+.ip-box:hover{
+
+    transform:scale(1.02);
+
+    border-color:#a855f7;
+
+    box-shadow:
+    0 0 40px rgba(147,51,234,.35),
+    inset 0 0 15px rgba(255,255,255,.03);
+}
+
+/* TEXTO IP */
 .ip{
-    font-size:30px;
+    font-size:32px;
+    font-weight:700;
+
+    letter-spacing:.5px;
 }
 
 /* BOTON COPIAR */
 .copy-btn{
+
     background:#7e22ce;
+
     border:none;
-    padding:20px 38px;
-    border-radius:14px;
+
+    padding:18px 34px;
+
+    border-radius:16px;
+
     color:white;
-    font-size:20px;
-    font-weight:bold;
+
+    font-size:18px;
+    font-weight:700;
+
     cursor:pointer;
-    transition:.3s;
+
+    transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
 }
 
 .copy-btn:hover{
+
     background:#9333ea;
-    transform:scale(1.06);
-    box-shadow:0 0 20px #9333ea;
+
+    transform:scale(1.08);
+
+    box-shadow:
+    0 0 20px rgba(147,51,234,.7),
+    0 0 45px rgba(147,51,234,.45);
 }
 
 /* BOTONES */
 .buttons{
-    margin-top:40px;
+
+    margin-top:38px;
+
     display:flex;
-    gap:20px;
+
+    gap:22px;
+
     flex-wrap:wrap;
+
     justify-content:center;
 }
 
+/* BOTON */
 .btn{
+
     text-decoration:none;
-    padding:22px 55px;
-    border-radius:16px;
-    background:#1a1b22;
-    border:1px solid #7e22ce;
+
+    padding:22px 58px;
+
+    border-radius:18px;
+
+    background:rgba(22,22,30,.92);
+
+    border:1px solid rgba(168,85,247,.45);
+
     color:white;
-    transition:.3s;
-    font-weight:bold;
+
     font-size:22px;
-    min-width:240px;
+    font-weight:700;
+
+    min-width:230px;
+
+    backdrop-filter:blur(8px);
+
+    transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease,
+    border .25s ease;
 }
 
+/* EFECTO HOVER */
 .btn:hover{
+
+    transform:scale(1.07);
+
     background:#7e22ce;
-    transform:translateY(-4px);
-    box-shadow:0 0 20px #9333ea;
+
+    border-color:#c084fc;
+
+    box-shadow:
+    0 0 20px rgba(147,51,234,.55),
+    0 0 50px rgba(147,51,234,.25);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    h1{
+        font-size:72px;
+    }
+
+    .logo{
+        width:240px;
+    }
+
+    .ip-box{
+        flex-direction:column;
+    }
+
+    .ip{
+        font-size:24px;
+    }
+
+    .btn{
+        width:100%;
+    }
+
 }
 
 </style>
 </head>
 <body>
 
+<!-- FONDO -->
 <div class="background">
+
     <div class="glow glow1"></div>
+
     <div class="glow glow2"></div>
+
 </div>
 
+<!-- CONTENIDO -->
 <div class="container">
 
     <!-- LOGO -->
@@ -177,12 +326,14 @@ h1{
     <!-- TITULO -->
     <h1>KUBEON</h1>
 
+    <!-- SUBTITULO -->
     <div class="subtitle">
         Tu Aventura Empieza Ahora
     </div>
 
+    <!-- VERSION -->
     <div class="version">
-        Minecraft Java 1.12+ - Última
+        Minecraft Java 1.12+ • Última Versión
     </div>
 
     <!-- IP -->
@@ -218,36 +369,48 @@ h1{
 </div>
 
 <script>
-async function copyIP() {
+
+async function copyIP(){
+
     const btn = document.querySelector(".copy-btn");
 
-    try {
+    try{
+
         await navigator.clipboard.writeText("play.kubeon.xyz");
 
         btn.innerText = "¡Copiado!";
-        
+
         setTimeout(() => {
+
             btn.innerText = "Copiar IP";
+
         }, 3000);
 
-    } catch (err) {
-        // fallback si el navegador bloquea clipboard
+    }catch(err){
+
         const text = "play.kubeon.xyz";
+
         const input = document.createElement("input");
+
         document.body.appendChild(input);
+
         input.value = text;
+
         input.select();
+
         document.execCommand("copy");
+
         document.body.removeChild(input);
 
         btn.innerText = "¡Copiado!";
-        
+
         setTimeout(() => {
+
             btn.innerText = "Copiar IP";
+
         }, 3000);
     }
 }
-</script>
 
 </script>
 
