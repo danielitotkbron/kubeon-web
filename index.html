@@ -218,20 +218,36 @@ h1{
 </div>
 
 <script>
-
-function copyIP(){
-
+async function copyIP() {
     const btn = document.querySelector(".copy-btn");
 
-    navigator.clipboard.writeText("play.kubeon.xyz");
+    try {
+        await navigator.clipboard.writeText("play.kubeon.xyz");
 
-    btn.innerText = "¡Copiado!";
+        btn.innerText = "¡Copiado!";
+        
+        setTimeout(() => {
+            btn.innerText = "Copiar IP";
+        }, 3000);
 
-    setTimeout(() => {
-        btn.innerText = "Copiar IP";
-    }, 3000);
+    } catch (err) {
+        // fallback si el navegador bloquea clipboard
+        const text = "play.kubeon.xyz";
+        const input = document.createElement("input");
+        document.body.appendChild(input);
+        input.value = text;
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
 
+        btn.innerText = "¡Copiado!";
+        
+        setTimeout(() => {
+            btn.innerText = "Copiar IP";
+        }, 3000);
+    }
 }
+</script>
 
 </script>
 
