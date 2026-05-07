@@ -21,12 +21,10 @@ body{
 }
 
 /* FONDO ANIMADO */
-
 .background{
     position:absolute;
     width:100%;
     height:100%;
-    overflow:hidden;
     z-index:-1;
 }
 
@@ -53,19 +51,9 @@ body{
 }
 
 @keyframes float{
-
-    0%{
-        transform:scale(1) translateY(0px);
-    }
-
-    50%{
-        transform:scale(1.1) translateY(20px);
-    }
-
-    100%{
-        transform:scale(1) translateY(0px);
-    }
-
+    0%{transform:scale(1) translateY(0px);}
+    50%{transform:scale(1.1) translateY(20px);}
+    100%{transform:scale(1) translateY(0px);}
 }
 
 .container{
@@ -79,7 +67,6 @@ body{
 }
 
 /* LOGO */
-
 .logo{
     width:320px;
     margin-bottom:20px;
@@ -87,16 +74,14 @@ body{
 }
 
 /* TITULO */
-
 h1{
-    font-size:100px;
+    font-size:140px;
     color:#e9d5ff;
     text-shadow:0 0 30px #9333ea;
     letter-spacing:6px;
 }
 
-/* SUB */
-
+/* SUBTITULO */
 .subtitle{
     font-size:30px;
     color:#d1d5db;
@@ -104,36 +89,31 @@ h1{
 }
 
 /* VERSION */
-
 .version{
     margin-top:18px;
     color:#9ca3af;
     font-size:20px;
 }
 
-/* CAJA IP */
-
+/* IP BOX */
 .ip-box{
     margin-top:35px;
     background:#1a1b22;
     border:1px solid #7e22ce;
     border-radius:18px;
-    padding:22px 28px;
+    padding:28px 40px;
     display:flex;
     align-items:center;
     gap:25px;
     box-shadow:0 0 25px #581c8799;
 }
 
-/* TEXTO IP */
-
+/* IP TEXTO */
 .ip{
     font-size:30px;
-    color:white;
 }
 
 /* BOTON COPIAR */
-
 .copy-btn{
     background:#7e22ce;
     border:none;
@@ -153,7 +133,6 @@ h1{
 }
 
 /* BOTONES */
-
 .buttons{
     margin-top:40px;
     display:flex;
@@ -181,33 +160,13 @@ h1{
     box-shadow:0 0 20px #9333ea;
 }
 
-/* RESPONSIVE */
-
-@media(max-width:700px){
-
-    h1{
-        font-size:65px;
-    }
-
-    .subtitle{
-        font-size:22px;
-    }
-
-    .ip-box{
-        flex-direction:column;
-    }
-
-}
-
 </style>
 </head>
 <body>
 
 <div class="background">
-
     <div class="glow glow1"></div>
     <div class="glow glow2"></div>
-
 </div>
 
 <div class="container">
@@ -215,6 +174,7 @@ h1{
     <!-- LOGO -->
     <img src="logo.png" class="logo">
 
+    <!-- TITULO -->
     <h1>KUBEON</h1>
 
     <div class="subtitle">
@@ -225,6 +185,7 @@ h1{
         Minecraft Java 1.12+ - Última
     </div>
 
+    <!-- IP -->
     <div class="ip-box">
 
         <div class="ip">
@@ -237,21 +198,18 @@ h1{
 
     </div>
 
+    <!-- BOTONES -->
     <div class="buttons">
 
-        <a class="btn"
-        href="https://discord.gg/yBwJqHF2xk"
-        target="_blank">
+        <a class="btn" href="https://discord.gg/yBwJqHF2xk" target="_blank">
             Discord
         </a>
 
-        <a class="btn"
-        href="#">
+        <a class="btn" href="#">
             Tienda
         </a>
 
-        <a class="btn"
-        href="#">
+        <a class="btn" href="#">
             Wiki
         </a>
 
@@ -263,7 +221,15 @@ h1{
 
 function copyIP(){
 
+    const btn = document.querySelector(".copy-btn");
+
     navigator.clipboard.writeText("play.kubeon.xyz");
+
+    btn.innerText = "¡Copiado!";
+
+    setTimeout(() => {
+        btn.innerText = "Copiar IP";
+    }, 3000);
 
 }
 
