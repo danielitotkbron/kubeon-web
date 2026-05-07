@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kubeon</title>
 
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#0b0b0f;
+      color:white;
+      overflow:hidden;
+    }
+
+    .bg{
+      position:absolute;
+      width:100%;
+      height:100%;
+      background:radial-gradient(circle at center,#6d28d9 0%, #0b0b0f 60%);
+      opacity:.25;
+      z-index:-1;
+    }
+
+    .container{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      padding:20px;
+    }
+
+    h1{
+      font-size:90px;
+      color:#c084fc;
+      text-shadow:0 0 20px #9333ea;
+      margin-bottom:10px;
+    }
+
+    p{
+      font-size:22px;
+      color:#cfcfcf;
+      margin-bottom:40px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    a{
+      text-decoration:none;
+      padding:15px 35px;
+      border-radius:12px;
+      font-size:18px;
+      transition:.3s;
+      font-weight:bold;
+    }
+
+    .discord{
+      background:#7c3aed;
+      color:white;
+      box-shadow:0 0 15px #7c3aed;
+    }
+
+    .discord:hover{
+      transform:scale(1.05);
+      background:#8b5cf6;
+    }
+
+    .ip{
+      border:2px solid #7c3aed;
+      color:white;
+    }
+
+    .ip:hover{
+      background:#7c3aed;
+      transform:scale(1.05);
+    }
+
+    .copy{
+      margin-top:20px;
+      color:#9ca3af;
+      font-size:15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+
+  <h1>KUBEON</h1>
+
+  <p>El servidor donde comienza la aventura.</p>
+
+  <div class="buttons">
+    <a class="discord" href="https://discord.gg/yBwJqHF2xk" target="_blank">
+      Discord
+    </a>
+
+    <a class="ip" onclick="copyIP()">
+      play.kubeon.xyz
+    </a>
+  </div>
+
+  <div class="copy" id="copyText">
+    Click para copiar la IP
+  </div>
+
+</div>
+
+<script>
+function copyIP(){
+  navigator.clipboard.writeText("play.kubeon.xyz");
+
+  document.getElementById("copyText").innerText =
+    "IP copiada!";
+}
+</script>
+
+</body>
+</html>
