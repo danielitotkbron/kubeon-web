@@ -20,7 +20,7 @@
             overflow: hidden;
         }
 
-        /* FONDO (Tus luces originales) */
+        /* FONDO */
         .background {
             position: absolute;
             width: 100%;
@@ -47,13 +47,13 @@
             50% { transform: translateY(25px) scale(1.08); }
         }
 
-        /* ANIMACIÓN DE RESPIRACIÓN */
+        /* ANIMACIÓN DE RESPIRACIÓN PARA EL LOGO */
         @keyframes breathe {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(147,51,234,.35)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 35px rgba(168,85,247,.55)); }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 18px rgba(147,51,234,.35)); }
+            50% { transform: scale(1.06); filter: drop-shadow(0 0 35px rgba(168,85,247,.55)); }
         }
 
-        /* CONTENIDO - Ahora más arriba */
+        /* CONTENIDO - Elevado */
         .container {
             height: 100vh;
             display: flex;
@@ -62,30 +62,30 @@
             flex-direction: column;
             text-align: center;
             padding: 20px;
-            transform: translateY(-80px); /* Subimos todo el bloque */
+            transform: translateY(-60px); /* Ajustado para que no esté tan abajo */
         }
 
-        /* LOGO - Mucho más grande y con respiración */
+        /* LOGO - Grande y con animación */
         .logo {
-            width: 450px; 
+            width: 480px; 
             max-width: 90vw;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             animation: breathe 4s ease-in-out infinite;
+            transition: transform .3s ease;
         }
 
         /* TEXTOS */
         .subtitle {
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 22px;
             font-weight: 700;
             color: #f3e8ff;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(168,85,247,0.5);
         }
 
         .version {
-            margin-top: 5px;
+            margin-top: 8px;
             color: #9ca3af;
             font-size: 17px;
             font-weight: 500;
@@ -97,10 +97,10 @@
             background: rgba(18,18,25,.92);
             border: 1px solid rgba(168,85,247,.4);
             border-radius: 20px;
-            padding: 18px 26px;
+            padding: 22px 26px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 22px;
             backdrop-filter: blur(10px);
             box-shadow: 0 0 25px rgba(126,34,206,.18);
             transition: all .25s ease;
@@ -112,7 +112,7 @@
         }
 
         .ip {
-            font-size: 26px;
+            font-size: 30px;
             font-weight: 700;
             letter-spacing: .5px;
         }
@@ -120,10 +120,10 @@
         .copy-btn {
             background: #7e22ce;
             border: none;
-            padding: 12px 25px;
-            border-radius: 12px;
+            padding: 18px 34px;
+            border-radius: 15px;
             color: white;
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 700;
             cursor: pointer;
             transition: all .25s ease;
@@ -131,43 +131,45 @@
 
         .copy-btn:hover {
             background: #9333ea;
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.04);
         }
 
-        /* BOTONES */
+        /* BOTONES - Recuperando el estilo gigante original */
         .buttons {
             margin-top: 35px;
             display: flex;
-            gap: 20px;
+            gap: 24px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .btn {
             text-decoration: none;
-            padding: 18px 45px;
-            border-radius: 15px;
+            padding: 34px 75px; /* Tu padding original */
+            border-radius: 22px; /* Tu redondeado original */
             background: rgba(18,18,25,.92);
             border: 1px solid rgba(168,85,247,.38);
             color: white;
-            font-size: 18px;
+            font-size: 25px; /* Tu tamaño de letra original */
             font-weight: 700;
-            min-width: 200px;
+            min-width: 280px;
+            backdrop-filter: blur(8px);
             transition: all .25s ease;
         }
 
         .btn:hover {
-            transform: translateY(-4px);
+            transform: translateY(-4px) scale(1.05);
             background: #7e22ce;
-            box-shadow: 0 10px 25px rgba(147,51,234,.3);
+            border-color: #d8b4fe;
+            box-shadow: 0 10px 30px rgba(147,51,234,.35);
         }
 
         /* RESPONSIVE */
-        @media(max-width:768px){
-            .logo { width: 300px; }
-            .container { transform: translateY(-40px); }
-            .ip-box { flex-direction: column; padding: 20px; }
-            .btn { width: 100%; }
+        @media(max-width:900px){
+            .logo { width: 320px; }
+            .container { transform: translateY(-30px); }
+            .ip-box { flex-direction: column; }
+            .btn { width: 100%; padding: 25px; font-size: 20px; }
         }
     </style>
 </head>
@@ -205,7 +207,6 @@
                 btn.innerText = "¡Copiado!";
                 setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
             } catch(err) {
-                // Fallback por si falla el clipboard
                 const input = document.createElement("input");
                 document.body.appendChild(input);
                 input.value = text;
