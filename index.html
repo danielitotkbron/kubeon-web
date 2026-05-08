@@ -20,12 +20,16 @@
         body {
             background: #090b11;
             color: white;
-            overflow: hidden;
+            /* CAMBIO: Permitimos el scroll vertical para que puedas bajar en el cel */
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
         }
 
         /* FONDO ORIGINAL */
         .background {
-            position: absolute;
+            /* CAMBIO: "fixed" para que las luces no se muevan al bajar */
+            position: fixed;
             width: 100%;
             height: 100%;
             z-index: -1;
@@ -56,21 +60,24 @@
             50% { transform: scale(1.06); filter: drop-shadow(0 0 35px rgba(168,85,247,.55)); }
         }
 
-        /* CONTENIDO - MÁS ARRIBA */
+        /* CONTENIDO */
         .container {
-            height: 100vh;
+            /* CAMBIO: min-height en vez de height fijo para que crezca si hay mucho contenido */
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             text-align: center;
-            padding: 20px;
-            transform: translateY(-80px);
+            padding: 40px 20px;
+            /* Ajuste de posición */
+            transform: translateY(-40px);
         }
 
         /* LOGO AGRANDADO */
         .logo {
             width: 480px; 
+            max-width: 90vw; /* Asegura que no se salga en pantallas chicas */
             margin-bottom: 10px;
             animation: breathe 4s ease-in-out infinite;
         }
@@ -143,6 +150,7 @@
             gap: 24px;
             flex-wrap: wrap;
             justify-content: center;
+            width: 100%;
         }
 
         .btn {
@@ -161,6 +169,8 @@
             justify-content: center;
             gap: 15px;
             transition: all .25s ease;
+            /* CAMBIO: Evita que el texto se vea raro en celulares pequeños */
+            white-space: nowrap;
         }
 
         .btn svg {
@@ -179,9 +189,19 @@
         /* RESPONSIVE */
         @media(max-width:900px){
             .logo { width: 300px; }
-            .container { transform: translateY(-30px); }
-            .ip-box { flex-direction: column; }
-            .btn { padding: 25px; width: 100%; font-size: 20px; }
+            .container { 
+                transform: translateY(0); /* CAMBIO: Centrado natural en móvil */
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+            .ip-box { flex-direction: column; gap: 15px; width: 100%; }
+            .ip { font-size: 22px; }
+            .btn { 
+                padding: 25px 20px; 
+                width: 100%; 
+                font-size: 20px; 
+                min-width: unset; 
+            }
         }
     </style>
 </head>
@@ -224,7 +244,7 @@
     <script>
         async function copyIP() {
             const btn = document.querySelector(".copy-btn");
-            const text = " "; // Cambié esto para que copie la IP real y no el texto de mantenimiento xd
+            const text = "play.kubeon.xyz"; 
             try {
                 await navigator.clipboard.writeText(text);
                 btn.innerText = "¡Copiado!";
