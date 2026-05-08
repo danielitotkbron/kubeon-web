@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kubeon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Kubeon - Servidor de Minecraft</title>
+    
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -17,10 +19,12 @@
         body {
             background: #090b11;
             color: white;
-            overflow: hidden;
+            overflow: hidden; /* Evita scroll innecesario */
+            height: 100vh;
+            width: 100vw;
         }
 
-        /* FONDO */
+        /* FONDO DINÁMICO */
         .background {
             position: absolute;
             width: 100%;
@@ -39,33 +43,21 @@
             animation: float 8s ease-in-out infinite;
         }
 
-        .glow1 {
-            background: #7e22ce;
-            top: -250px;
-            left: -200px;
-        }
-
-        .glow2 {
-            background: #581c87;
-            bottom: -250px;
-            right: -200px;
-            animation-delay: 4s;
-        }
+        .glow1 { background: #7e22ce; top: -250px; left: -200px; }
+        .glow2 { background: #581c87; bottom: -250px; right: -200px; animation-delay: 4s; }
 
         @keyframes float {
-            0% { transform: translateY(0px) scale(1); }
+            0%, 100% { transform: translateY(0px) scale(1); }
             50% { transform: translateY(25px) scale(1.08); }
-            100% { transform: translateY(0px) scale(1); }
         }
 
-        /* ANIMACIÓN DE RESPIRACIÓN PARA EL LOGO */
+        /* ANIMACIÓN DE RESPIRACIÓN (LOGO) */
         @keyframes breathe {
-            0% { transform: scale(1); filter: drop-shadow(0 0 18px rgba(147,51,234,.35)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 35px rgba(168,85,247,.50)); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 18px rgba(147,51,234,.35)); }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(147,51,234,.3)); }
+            50% { transform: scale(1.06); filter: drop-shadow(0 0 35px rgba(168,85,247,.5)); }
         }
 
-        /* CONTENIDO */
+        /* CONTENEDOR PRINCIPAL - POSICIÓN MÁS ALTA */
         .container {
             height: 100vh;
             display: flex;
@@ -74,204 +66,181 @@
             flex-direction: column;
             text-align: center;
             padding: 20px;
-            /* Subimos el contenedor más arriba */
-            transform: translateY(-80px); 
+            transform: translateY(-80px); /* Ajuste para subir todo el contenido */
         }
 
-        /* LOGO MODIFICADO */
+        /* LOGO AGRANDADO */
         .logo {
-            width: 480px; /* Logo más grande */
+            width: 480px;
             max-width: 90vw;
-            margin-bottom: 10px; /* Espacio ajustado ya que no hay H1 */
-            animation: breathe 4s ease-in-out infinite; /* Animación de respiración */
-            transition: transform .3s ease;
+            height: auto;
+            margin-bottom: 20px;
+            animation: breathe 4s ease-in-out infinite;
+            pointer-events: none; /* Para que no interfiera con clicks */
         }
 
-        .logo:hover {
-            cursor: pointer;
-            /* El hover se suma a la escala de la animación si se desea, 
-               o simplemente mantiene el efecto */
-        }
-
-        /* SUBTITULO */
+        /* TEXTOS */
         .subtitle {
-            margin-top: 5px;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
             color: #f5f5f5;
-            opacity: .9;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
         }
 
-        /* VERSION */
         .version {
-            margin-top: 8px;
             color: #9ca3af;
-            font-size: 17px;
-            font-weight: 500;
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 30px;
         }
 
         /* CAJA IP */
         .ip-box {
-            margin-top: 30px;
             background: rgba(18,18,25,.92);
             border: 1px solid rgba(168,85,247,.4);
             border-radius: 20px;
-            padding: 22px 26px;
+            padding: 15px 25px;
             display: flex;
             align-items: center;
-            gap: 22px;
+            gap: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 25px rgba(126,34,206,.18), inset 0 0 10px rgba(255,255,255,.02);
-            transition: transform .25s ease, border .25s ease, box-shadow .25s ease;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            transition: all .3s ease;
         }
 
         .ip-box:hover {
-            transform: scale(1.02);
             border-color: #a855f7;
-            box-shadow: 0 0 35px rgba(147,51,234,.25);
+            transform: scale(1.02);
         }
 
-        /* TEXTO IP */
         .ip {
-            font-size: 30px;
+            font-size: 28px;
             font-weight: 700;
-            letter-spacing: .5px;
+            color: #fff;
         }
 
-        /* BOTON COPIAR */
         .copy-btn {
             background: #7e22ce;
             border: none;
-            padding: 18px 34px;
-            border-radius: 15px;
+            padding: 12px 25px;
+            border-radius: 12px;
             color: white;
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+            transition: all .25s ease;
         }
 
         .copy-btn:hover {
             background: #9333ea;
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 10px 25px rgba(147,51,234,.35), 0 0 35px rgba(147,51,234,.25);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(147,51,234,0.4);
         }
 
-        /* BOTONES */
+        /* BOTONES DE ENLACE */
         .buttons {
-            margin-top: 28px;
+            margin-top: 40px;
             display: flex;
-            gap: 24px;
+            gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        /* BOTON */
         .btn {
             text-decoration: none;
-            padding: 25px 60px;
-            border-radius: 22px;
-            background: rgba(18,18,25,.92);
-            border: 1px solid rgba(168,85,247,.38);
+            padding: 20px 50px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(168,85,247,.3);
             color: white;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
-            min-width: 250px;
-            backdrop-filter: blur(8px);
-            transition: transform .25s ease, background .25s ease, box-shadow .25s ease, border .25s ease;
+            min-width: 220px;
+            transition: all .3s ease;
         }
 
         .btn:hover {
-            transform: translateY(-4px) scale(1.05);
             background: #7e22ce;
-            border-color: #d8b4fe;
-            box-shadow: 0 10px 30px rgba(147,51,234,.35), 0 0 40px rgba(147,51,234,.22);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(147,51,234,0.3);
         }
 
         /* RESPONSIVE */
-        @media(max-width:900px){
-            .logo {
-                width: 320px;
-            }
-            .ip-box {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .ip {
-                font-size: 22px;
-            }
-            .btn {
-                width: 100%;
-                padding: 20px;
-            }
-            .container {
-                transform: translateY(-40px);
-            }
+        @media(max-width: 768px){
+            .logo { width: 320px; }
+            .container { transform: translateY(-30px); }
+            .ip-box { flex-direction: column; width: 100%; }
+            .ip { font-size: 20px; }
+            .btn { width: 100%; min-width: unset; }
         }
     </style>
 </head>
 <body>
 
-    <!-- FONDO -->
     <div class="background">
         <div class="glow glow1"></div>
         <div class="glow glow2"></div>
     </div>
 
-    <!-- CONTENIDO -->
     <div class="container">
+        <!-- Logo con animación de respiración -->
+        <img src="logo.png" class="logo" alt="Logo Kubeon">
 
-        <!-- LOGO -->
-        <img src="logo.png" class="logo" alt="Logo">
+        <!-- Textos movidos hacia arriba junto con la IP -->
+        <div class="subtitle">Tu Aventura Empieza Ahora</div>
+        <div class="version">Minecraft Java 1.12+ • Última Versión</div>
 
-        <!-- SUBTITULO -->
-        <div class="subtitle">
-            Tu Aventura Empieza Ahora
-        </div>
-
-        <!-- VERSION -->
-        <div class="version">
-            Minecraft Java 1.12+ • Última Versión
-        </div>
-
-        <!-- IP -->
+        <!-- Caja de IP -->
         <div class="ip-box">
-            <div class="ip">play.kubeon.xyz</div>
-            <button class="copy-btn" onclick="copyIP()">
-                Copiar IP
-            </button>
+            <div class="ip" id="server-ip">play.kubeon.xyz</div>
+            <button class="copy-btn" onclick="copyIP()">Copiar IP</button>
         </div>
 
-        <!-- BOTONES -->
+        <!-- Botones inferiores -->
         <div class="buttons">
             <a class="btn" href="https://discord.gg/yBwJqHF2xk" target="_blank">Discord</a>
             <a class="btn" href="#">Tienda</a>
             <a class="btn" href="#">Wiki</a>
         </div>
-
     </div>
 
     <script>
-        async function copyIP(){
-            const btn = document.querySelector(".copy-btn");
+        function copyIP() {
             const ipText = "play.kubeon.xyz";
-            try {
-                await navigator.clipboard.writeText(ipText);
+            const btn = document.querySelector(".copy-btn");
+
+            // Método moderno
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(ipText).then(() => {
+                    updateButton();
+                });
+            } else {
+                // Método de respaldo para navegadores antiguos o sin HTTPS
+                const textArea = document.createElement("textarea");
+                textArea.value = ipText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    updateButton();
+                } catch (err) {
+                    console.error('Error al copiar', err);
+                }
+                document.body.removeChild(textArea);
+            }
+
+            function updateButton() {
                 btn.innerText = "¡Copiado!";
-                setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
-            } catch(err) {
-                const input = document.createElement("input");
-                document.body.appendChild(input);
-                input.value = ipText;
-                input.select();
-                document.execCommand("copy");
-                document.body.removeChild(input);
-                btn.innerText = "¡Copiado!";
-                setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
+                btn.style.background = "#22c55e"; // Color verde de éxito
+                setTimeout(() => {
+                    btn.innerText = "Copiar IP";
+                    btn.style.background = "#7e22ce";
+                }, 2000);
             }
         }
     </script>
+
 </body>
 </html>
