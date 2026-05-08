@@ -15,25 +15,26 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
+            /* Evita el recuadro azul feo que sale al tocar en Android */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background: #090b11;
             color: white;
-            /* CAMBIO: Permitimos el scroll vertical para que puedas bajar en el cel */
             overflow-x: hidden;
             overflow-y: auto;
             min-height: 100vh;
         }
 
-        /* FONDO ORIGINAL */
+        /* FONDO */
         .background {
-            /* CAMBIO: "fixed" para que las luces no se muevan al bajar */
             position: fixed;
             width: 100%;
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            pointer-events: none; 
         }
 
         .glow {
@@ -62,27 +63,27 @@
 
         /* CONTENIDO */
         .container {
-            /* CAMBIO: min-height en vez de height fijo para que crezca si hay mucho contenido */
+            position: relative;
+            z-index: 10;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             flex-direction: column;
             text-align: center;
-            padding: 40px 20px;
-            /* Ajuste de posición */
-            transform: translateY(-40px);
+            padding: 60px 20px;
         }
 
-        /* LOGO AGRANDADO */
+        /* LOGO */
         .logo {
             width: 480px; 
-            max-width: 90vw; /* Asegura que no se salga en pantallas chicas */
+            max-width: 90vw;
             margin-bottom: 10px;
             animation: breathe 4s ease-in-out infinite;
+            pointer-events: none; 
         }
 
-        /* SUBTITULO */
+        /* TEXTOS */
         .subtitle {
             margin-top: 14px;
             font-size: 22px;
@@ -92,7 +93,6 @@
             letter-spacing: 1px;
         }
 
-        /* VERSION */
         .version {
             margin-top: 10px;
             color: #9ca3af;
@@ -112,16 +112,11 @@
             gap: 22px;
             backdrop-filter: blur(10px);
             box-shadow: 0 0 25px rgba(126, 34, 206, .18);
-            transition: all .25s ease;
-        }
-
-        .ip-box:hover {
-            transform: scale(1.02);
-            border-color: #a855f7;
+            transition: all 0.2s ease;
         }
 
         .ip {
-            font-size: 30px;
+            font-size: clamp(20px, 5vw, 30px);
             font-weight: 700;
             letter-spacing: .5px;
         }
@@ -135,12 +130,13 @@
             font-size: 17px;
             font-weight: 700;
             cursor: pointer;
-            transition: all .25s ease;
+            transition: all 0.2s ease;
         }
 
-        .copy-btn:hover {
+        /* EFECTO CLICK/MOUSE PARA COPIAR IP */
+        .copy-btn:hover, .copy-btn:active {
             background: #9333ea;
-            transform: translateY(-3px);
+            transform: scale(1.05);
         }
 
         /* BOTONES GIGANTES */
@@ -168,18 +164,19 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            transition: all .25s ease;
-            /* CAMBIO: Evita que el texto se vea raro en celulares pequeños */
-            white-space: nowrap;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
 
         .btn svg {
             width: 32px;
             height: 32px;
             fill: white;
+            pointer-events: none;
         }
 
-        .btn:hover {
+        /* REACCIÓN AL CLICK (MOUSE Y CELULAR) */
+        .btn:hover, .btn:active {
             transform: translateY(-4px) scale(1.05);
             background: #7e22ce;
             border-color: #d8b4fe;
@@ -189,19 +186,9 @@
         /* RESPONSIVE */
         @media(max-width:900px){
             .logo { width: 300px; }
-            .container { 
-                transform: translateY(0); /* CAMBIO: Centrado natural en móvil */
-                padding-top: 60px;
-                padding-bottom: 60px;
-            }
-            .ip-box { flex-direction: column; gap: 15px; width: 100%; }
-            .ip { font-size: 22px; }
-            .btn { 
-                padding: 25px 20px; 
-                width: 100%; 
-                font-size: 20px; 
-                min-width: unset; 
-            }
+            .container { padding-top: 40px; }
+            .ip-box { flex-direction: column; width: 100%; }
+            .btn { padding: 25px; width: 100%; font-size: 20px; min-width: auto; }
         }
     </style>
 </head>
@@ -261,6 +248,5 @@
             }
         }
     </script>
-
 </body>
 </html>
