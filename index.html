@@ -3,10 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kubeon Network</title>
+    <title>Kubeon Network - Tu Aventura Empieza Ahora</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            /* Colores de DiosesMC (Dorado y Oscuro) */
+            --color-principal: #fcd34d; /* Dorado brillante */
+            --color-principal-hover: #fbbf24;
+            --color-fondo: #09090b; /* Casi negro */
+            --color-caja: rgba(24, 24, 27, 0.8);
+            --color-borde: rgba(252, 211, 77, 0.3); /* Dorado translúcido */
+            --color-texto: #f4f4f5;
+            --color-subtexto: #a1a1aa;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,207 +27,258 @@
         }
 
         body {
-            background: #090b11;
-            color: white;
-            overflow: hidden;
-        }
-
-        /* FONDO */
-        .background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .glow {
-            position: absolute;
-            width: 700px;
-            height: 700px;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: .15;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .glow1 { background: #7e22ce; top: -250px; left: -200px; }
-        .glow2 { background: #581c87; bottom: -250px; right: -200px; animation-delay: 4s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(25px) scale(1.08); }
-        }
-
-        /* ANIMACIÓN DE RESPIRACIÓN PARA EL LOGO */
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 18px rgba(147,51,234,.35)); }
-            50% { transform: scale(1.06); filter: drop-shadow(0 0 35px rgba(168,85,247,.55)); }
-        }
-
-        /* CONTENIDO - Elevado */
-        .container {
+            background-color: var(--color-fondo);
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(252, 211, 77, 0.05) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(252, 211, 77, 0.05) 0px, transparent 50%);
+            color: var(--color-texto);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 20px;
-            transform: translateY(-60px); /* Ajustado para que no esté tan abajo */
+            overflow: hidden;
+            position: relative;
         }
 
-        /* LOGO - Grande y con animación */
+        /* Efecto de partículas de fondo */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.15;
+            animation: move-bg 100s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes move-bg {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 50px); }
+        }
+
+        /* ANIMACIÓN DE RESPIRACIÓN PARA EL LOGO (Pulso y Brillo) */
+        @keyframes breathe {
+            0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.2)); }
+            50% { transform: scale(1.03); filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.5)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.2)); }
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .container {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 1000px; /* Un poco más ancho para los botones grandes */
+            /* Subimos el contenedor para que quede mejor centrado visualmente */
+            transform: translateY(-50px);
+        }
+
+        /* LOGO MODIFICADO (Grande y Animado) */
         .logo {
-            width: 480px; 
+            width: 450px; 
             max-width: 90vw;
-            margin-bottom: 5px;
-            animation: breathe 4s ease-in-out infinite;
-            transition: transform .3s ease;
+            height: auto;
+            margin-bottom: 25px;
+            animation: breathe 5s ease-in-out infinite;
+            pointer-events: none;
         }
 
         /* TEXTOS */
         .subtitle {
-            margin-top: 15px;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
-            color: #f3e8ff;
+            color: var(--color-principal); /* Dorado */
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
         }
 
         .version {
-            margin-top: 8px;
-            color: #9ca3af;
-            font-size: 17px;
-            font-weight: 500;
+            color: var(--color-subtexto);
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 40px;
         }
 
-        /* CAJA IP */
+        /* SECCIÓN DE CONEXIÓN (Título dorado) */
+        .connect-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-principal);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        /* CAJA IP (Compacta y Estilizada) */
         .ip-box {
-            margin-top: 30px;
-            background: rgba(18,18,25,.92);
-            border: 1px solid rgba(168,85,247,.4);
-            border-radius: 20px;
-            padding: 22px 26px;
-            display: flex;
+            background-color: var(--color-caja);
+            border: 1px solid var(--color-borde);
+            border-radius: 12px;
+            padding: 10px 20px;
+            display: inline-flex;
             align-items: center;
-            gap: 22px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 25px rgba(126,34,206,.18);
-            transition: all .25s ease;
+            gap: 15px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+            margin-bottom: 40px;
         }
 
         .ip-box:hover {
-            transform: scale(1.02);
-            border-color: #a855f7;
+            border-color: rgba(252, 211, 77, 0.6);
+            transform: translateY(-2px);
         }
 
+        /* TEXTO IP */
         .ip {
-            font-size: 30px;
+            font-size: 22px;
             font-weight: 700;
-            letter-spacing: .5px;
+            color: var(--color-texto);
+            letter-spacing: 1px;
         }
 
+        /* BOTON COPIAR (Estilo Dorado, Texto Negro) */
         .copy-btn {
-            background: #7e22ce;
+            background-color: var(--color-principal);
             border: none;
-            padding: 18px 34px;
-            border-radius: 15px;
-            color: white;
-            font-size: 17px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #1c1917; /* Texto oscuro */
+            font-size: 14px;
             font-weight: 700;
+            text-transform: uppercase;
             cursor: pointer;
-            transition: all .25s ease;
+            transition: background-color 0.25s ease, transform 0.25s ease;
         }
 
         .copy-btn:hover {
-            background: #9333ea;
-            transform: translateY(-3px) scale(1.04);
+            background-color: var(--color-principal-hover);
+            transform: scale(1.05);
         }
 
-        /* BOTONES - Recuperando el estilo gigante original */
+        /* BOTONES DE ENLACE (Más Grandes y con Iconos) */
         .buttons {
-            margin-top: 35px;
             display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
+            gap: 20px; /* Más espacio entre ellos */
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn {
             text-decoration: none;
-            padding: 34px 75px; /* Tu padding original */
-            border-radius: 22px; /* Tu redondeado original */
-            background: rgba(18,18,25,.92);
-            border: 1px solid rgba(168,85,247,.38);
-            color: white;
-            font-size: 25px; /* Tu tamaño de letra original */
+            padding: 20px 60px; /* MÁS GRANDE: padding aumentado */
+            border-radius: 8px;
+            background-color: var(--color-principal); /* Dorado por defecto */
+            border: 1px solid var(--color-principal);
+            color: #1c1917; /* Texto oscuro */
+            font-size: 18px; /* Un poco más grande la letra */
             font-weight: 700;
-            min-width: 280px;
-            backdrop-filter: blur(8px);
-            transition: all .25s ease;
+            text-transform: uppercase;
+            min-width: 250px; /* MÁS GRANDE: min-width aumentado */
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px; /* Más espacio para icono */
         }
 
+        /* Iconos SVG (Simulación con data URIs para no depender de archivos externos) */
+        .btn::before {
+            content: '';
+            display: inline-block;
+            width: 20px; /* Icono más grande */
+            height: 20px;
+            background-color: currentColor; /* Usa el color del texto */
+            mask-size: cover;
+            -webkit-mask-size: cover;
+        }
+        
+        /* Icono de Discord */
+        .btn-discord::before { -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.71,32.65-1.78,56.63.48,80.05a107.6,107.6,0,0,0,32.44,16.31,81.08,81.08,0,0,0,6.85-11.17,68.62,68.62,0,0,1-10.86-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,81.44,81.44,0,0,0,6.86,11.17,107.51,107.51,0,0,0,32.49-16.31C129.27,53.92,124.34,29.82,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5.12-12.67,11.41-12.67S54,46,53.86,53,48.74,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.12-12.67,11.41-12.67S96.08,46,95.93,53,90.81,65.69,82.69,65.69Z"/></svg>'); mask-image: url('data:image/svg+xml;utf8,...'); }
+        /* Icono de Carrito (Tienda) */
+        .btn-tienda::before { -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M528.1 171.5L480 480H96L47.9 171.5c-3-19.1 11.1-37.3 30.2-40.3L224 102.6V32C224 14.3 238.3 0 256 0h64c17.7 0 32 14.3 32 32v70.6l145.9 28.6c19 3.7 32.2 21.2 30.2 40.3zM320 111V32h-64v79l64 12.6zm-96 18.8L96.2 153.5l38.2 246.3h283.2l38.2-246.3L320 130.4v.1c-19.1-3.7-32.2-21.2-30.2-40.3L224 129.8z"/></svg>'); mask-image: url('data:image/svg+xml;utf8,...'); }
+        /* Icono de Libro (Wiki) */
+        .btn-wiki::before { -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-1.8-1.5-3.8-2.7-6-3.7 11.3-3.8 19.9-14 19.9-26.6v-16c0-12.6-8.6-22.8-19.9-26.6 2.2-1 4.2-2.2 6-3.7 5.4-4.4 8.9-11.2 8.9-18.7zm-352 88c-17.7 0-32-14.3-32-32s14.3-32 32-32h320v64H96zm320-128H96c-17.7 0-32-14.3-32-32s14.3-32 32-32h320v64zm0-128H96c-17.7 0-32-14.3-32-32s14.3-32 32-32h320v64z"/></svg>'); mask-image: url('data:image/svg+xml;utf8,...'); }
+
+        /* Hover de los botones */
         .btn:hover {
-            transform: translateY(-4px) scale(1.05);
-            background: #7e22ce;
-            border-color: #d8b4fe;
-            box-shadow: 0 10px 30px rgba(147,51,234,.35);
+            background-color: var(--color-caja); /* Fondo oscuro en hover */
+            border-color: var(--color-principal);
+            color: var(--color-principal); /* Texto dorado en hover */
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(252, 211, 77, 0.2);
         }
 
         /* RESPONSIVE */
-        @media(max-width:900px){
-            .logo { width: 320px; }
-            .container { transform: translateY(-30px); }
-            .ip-box { flex-direction: column; }
-            .btn { width: 100%; padding: 25px; font-size: 20px; }
+        @media(max-width:768px){
+            .logo { width: 300px; }
+            .container { transform: translateY(-20px); }
+            .ip-box { flex-direction: column; gap: 10px; width: 100%; }
+            .ip { font-size: 18px; }
+            /* Ajuste de botones en móvil para que sigan siendo grandes pero quepan */
+            .btn { width: 100%; min-width: unset; padding: 15px; font-size: 18px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="background">
-        <div class="glow glow1"></div>
-        <div class="glow glow2"></div>
-    </div>
-
     <div class="container">
-        <img src="logo.png" class="logo">
+
+        <img src="logo.png" class="logo" alt="Kubeon Network Logo">
 
         <div class="subtitle">Tu Aventura Empieza Ahora</div>
         <div class="version">Minecraft Java 1.12+ • Última Versión</div>
 
+        <div class="connect-title">Conecta al Servidor</div>
         <div class="ip-box">
-            <div class="ip">play.kubeon.xyz</div>
-            <button class="copy-btn" onclick="copyIP()">Copiar IP</button>
+            <div class="ip" id="server-ip">play.kubeon.xyz</div>
+            <button class="copy-btn" onclick="copyIP()">
+                Copiar IP
+            </button>
         </div>
 
         <div class="buttons">
-            <a class="btn" href="https://discord.gg/yBwJqHF2xk" target="_blank">Discord</a>
-            <a class="btn" href="#">Tienda</a>
-            <a class="btn" href="#">Wiki</a>
+            <a class="btn btn-discord" href="https://discord.gg/yBwJqHF2xk" target="_blank">Discord</a>
+            <a class="btn btn-tienda" href="#">Tienda</a>
+            <a class="btn btn-wiki" href="#">Wiki</a>
         </div>
+
     </div>
 
     <script>
         async function copyIP(){
             const btn = document.querySelector(".copy-btn");
-            const text = "play.kubeon.xyz";
+            const ipText = "play.kubeon.xyz";
+            
             try {
-                await navigator.clipboard.writeText(text);
-                btn.innerText = "¡Copiado!";
-                setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
+                // API moderna
+                await navigator.clipboard.writeText(ipText);
+                mostrarExito(btn);
             } catch(err) {
+                // Fallback
                 const input = document.createElement("input");
                 document.body.appendChild(input);
-                input.value = text;
+                input.value = ipText;
                 input.select();
                 document.execCommand("copy");
                 document.body.removeChild(input);
-                btn.innerText = "¡Copiado!";
-                setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
+                mostrarExito(btn);
             }
+        }
+
+        function mostrarExito(btn) {
+            btn.innerText = "¡Copiado!";
+            btn.style.backgroundColor = "#22c55e"; /* Verde éxito */
+            btn.style.color = "white";
+            setTimeout(() => {
+                btn.innerText = "Copiar IP";
+                btn.style.backgroundColor = ""; /* Vuelve al dorado por CSS */
+                btn.style.color = ""; /* Vuelve al oscuro por CSS */
+            }, 2500);
         }
     </script>
 </body>
