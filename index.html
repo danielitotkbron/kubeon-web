@@ -1,244 +1,243 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kubeon Network</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kubeon</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat', sans-serif;
+}
 
-        body {
-            background: #090b11;
-            color: white;
-            overflow: hidden;
-        }
+body{
+    background:#090b11;
+    color:white;
+    overflow:hidden;
+}
 
-        /* FONDO */
-        .background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
+/* FONDO ORIGINAL */
+.background{
+    position:absolute;
+    width:100%;
+    height:100%;
+    z-index:-1;
+    overflow:hidden;
+}
 
-        .glow {
-            position: absolute;
-            width: 700px;
-            height: 700px;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: .15;
-            animation: float 8s ease-in-out infinite;
-        }
+.glow{
+    position:absolute;
+    width:700px;
+    height:700px;
+    border-radius:50%;
+    filter:blur(150px);
+    opacity:.15;
+    animation:float 8s ease-in-out infinite;
+}
 
-        .glow1 { background: #7e22ce; top: -250px; left: -200px; }
-        .glow2 { background: #581c87; bottom: -250px; right: -200px; animation-delay: 4s; }
+.glow1{ background:#7e22ce; top:-250px; left:-200px; }
+.glow2{ background:#581c87; bottom:-250px; right:-200px; animation-delay:4s; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(25px) scale(1.08); }
-        }
+@keyframes float{
+    0%, 100%{ transform:translateY(0px) scale(1); }
+    50%{ transform:translateY(25px) scale(1.08); }
+}
 
-        /* ANIMACIÓN DE RESPIRACIÓN PARA EL LOGO */
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 18px rgba(147,51,234,.35)); }
-            50% { transform: scale(1.06); filter: drop-shadow(0 0 35px rgba(168,85,247,.55)); }
-        }
+/* ANIMACIÓN RESPIRACIÓN */
+@keyframes breathe {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 18px rgba(147,51,234,.35)); }
+    50% { transform: scale(1.06); filter: drop-shadow(0 0 35px rgba(168,85,247,.55)); }
+}
 
-        /* CONTENIDO - Elevado */
-        .container {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 20px;
-            transform: translateY(-60px); 
-        }
+/* CONTENIDO - MÁS ARRIBA */
+.container{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+    transform:translateY(-80px); /* Subido como pediste */
+}
 
-        /* LOGO - Grande y con animación */
-        .logo {
-            width: 480px; 
-            max-width: 90vw;
-            margin-bottom: 5px;
-            animation: breathe 4s ease-in-out infinite;
-        }
+/* LOGO AGRANDADO */
+.logo{
+    width:480px; /* Logo más grande */
+    margin-bottom:10px;
+    animation: breathe 4s ease-in-out infinite; /* Respiración */
+}
 
-        /* TEXTOS */
-        .subtitle {
-            margin-top: 15px;
-            font-size: 22px;
-            font-weight: 700;
-            color: #f3e8ff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+/* SUBTITULO */
+.subtitle{
+    margin-top:14px;
+    font-size:22px;
+    font-weight:700;
+    color:#f5f5f5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-        .version {
-            margin-top: 8px;
-            color: #9ca3af;
-            font-size: 17px;
-            font-weight: 500;
-        }
+/* VERSION */
+.version{
+    margin-top:10px;
+    color:#9ca3af;
+    font-size:17px;
+    font-weight:500;
+}
 
-        /* CAJA IP */
-        .ip-box {
-            margin-top: 30px;
-            background: rgba(18,18,25,.92);
-            border: 1px solid rgba(168,85,247,.4);
-            border-radius: 20px;
-            padding: 22px 26px;
-            display: flex;
-            align-items: center;
-            gap: 22px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 25px rgba(126,34,206,.18);
-            transition: all .25s ease;
-        }
+/* CAJA IP */
+.ip-box{
+    margin-top:35px;
+    background:rgba(18,18,25,.92);
+    border:1px solid rgba(168,85,247,.4);
+    border-radius:20px;
+    padding:22px 26px;
+    display:flex;
+    align-items:center;
+    gap:22px;
+    backdrop-filter:blur(10px);
+    box-shadow: 0 0 25px rgba(126,34,206,.18);
+    transition: all .25s ease;
+}
 
-        .ip-box:hover {
-            transform: scale(1.02);
-            border-color: #a855f7;
-        }
+.ip-box:hover{
+    transform:scale(1.02);
+    border-color:#a855f7;
+}
 
-        .ip {
-            font-size: 30px;
-            font-weight: 700;
-            letter-spacing: .5px;
-        }
+.ip{
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:.5px;
+}
 
-        .copy-btn {
-            background: #7e22ce;
-            border: none;
-            padding: 18px 34px;
-            border-radius: 15px;
-            color: white;
-            font-size: 17px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all .25s ease;
-        }
+.copy-btn{
+    background:#7e22ce;
+    border:none;
+    padding:18px 34px;
+    border-radius:15px;
+    color:white;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    transition: all .25s ease;
+}
 
-        .copy-btn:hover {
-            background: #9333ea;
-            transform: translateY(-3px);
-        }
+.copy-btn:hover{
+    background:#9333ea;
+    transform:translateY(-3px);
+}
 
-        /* BOTONES GIGANTES CON ICONOS */
-        .buttons {
-            margin-top: 35px;
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+/* BOTONES GIGANTES ORIGINALES */
+.buttons{
+    margin-top:40px;
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
 
-        .btn {
-            text-decoration: none;
-            padding: 34px 75px; 
-            border-radius: 22px;
-            background: rgba(18,18,25,.92);
-            border: 1px solid rgba(168,85,247,.38);
-            color: white;
-            font-size: 25px; 
-            font-weight: 700;
-            min-width: 320px; /* Un poco más ancho por los iconos */
-            backdrop-filter: blur(8px);
-            transition: all .25s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px; /* Espacio entre icono y texto */
-        }
+.btn{
+    text-decoration:none;
+    padding:34px 75px; /* Tu tamaño original */
+    border-radius:22px;
+    background:rgba(18,18,25,.92);
+    border:1px solid rgba(168,85,247,.38);
+    color:white;
+    font-size:25px; /* Tu tamaño original */
+    font-weight:700;
+    min-width:300px;
+    backdrop-filter:blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Espacio para el icono */
+    transition: all .25s ease;
+}
 
-        /* Estilo para los SVG */
-        .btn svg {
-            width: 35px; /* Tamaño del icono */
-            height: 35px;
-            fill: currentColor; /* Para que el icono sea del mismo color que el texto */
-        }
+.btn svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+}
 
-        .btn:hover {
-            transform: translateY(-4px) scale(1.05);
-            background: #7e22ce;
-            border-color: #d8b4fe;
-            box-shadow: 0 10px 30px rgba(147,51,234,.35);
-        }
+.btn:hover{
+    transform:translateY(-4px) scale(1.05);
+    background:#7e22ce;
+    border-color:#d8b4fe;
+    box-shadow: 0 10px 30px rgba(147,51,234,.35);
+}
 
-        /* RESPONSIVE */
-        @media(max-width:900px){
-            .logo { width: 320px; }
-            .container { transform: translateY(-30px); }
-            .ip-box { flex-direction: column; }
-            .btn { width: 100%; padding: 25px; font-size: 20px; min-width: auto; }
-            .btn svg { width: 25px; height: 25px; }
-        }
-    </style>
+/* RESPONSIVE */
+@media(max-width:900px){
+    .logo{ width:300px; }
+    .container { transform: translateY(-30px); }
+    .ip-box{ flex-direction:column; }
+    .btn { padding: 25px; width: 100%; font-size: 20px; }
+}
+</style>
 </head>
 <body>
 
-    <div class="background">
-        <div class="glow glow1"></div>
-        <div class="glow glow2"></div>
+<div class="background">
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+</div>
+
+<div class="container">
+    <img src="logo.png" class="logo">
+
+    <div class="subtitle">Tu Aventura Empieza Ahora</div>
+    <div class="version">Minecraft Java 1.12+ • Última Versión</div>
+
+    <div class="ip-box">
+        <div class="ip">play.kubeon.xyz</div>
+        <button class="copy-btn" onclick="copyIP()">Copiar IP</button>
     </div>
 
-    <div class="container">
-        <img src="logo.png" class="logo">
+    <div class="buttons">
+        <a class="btn" href="https://discord.gg/yBwJqHF2xk" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            Discord
+        </a>
 
-        <div class="subtitle">Tu Aventura Empieza Ahora</div>
-        <div class="version">Minecraft Java 1.12+ • Última Versión</div>
+        <a class="btn" href="#">
+            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2s-.9-2-2-2zM1 2v2h2l3.6 7.59l-1.35 2.45c-.16.28-.25.61-.25.96c0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2s2-.9 2-2s-.9-2-2-2z"/></svg>
+            Tienda
+        </a>
 
-        <div class="ip-box">
-            <div class="ip">play.kubeon.xyz</div>
-            <button class="copy-btn" onclick="copyIP()">Copiar IP</button>
-        </div>
-
-        <div class="buttons">
-            <a class="btn" href="https://discord.gg/yBwJqHF2xk" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/></svg>
-                Discord
-            </a>
-            
-            <a class="btn" href="#">
-                <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2s-.9-2-2-2zM1 2v2h2l3.6 7.59l-1.35 2.45c-.16.28-.25.61-.25.96c0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2s2-.9 2-2s-.9-2-2-2z"/></svg>
-                Tienda
-            </a>
-            
-            <a class="btn" href="#">
-                <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
-                Wiki
-            </a>
-        </div>
+        <a class="btn" href="#">
+            <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+            Wiki
+        </a>
     </div>
+</div>
 
-    <script>
-        async function copyIP(){
-            const btn = document.querySelector(".copy-btn");
-            const text = "play.kubeon.xyz";
-            try {
-                await navigator.clipboard.writeText(text);
-                btn.innerText = "¡Copiado!";
-                setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
-            } catch(err) {
-                const input = document.createElement("input");
-                document.body.appendChild(input);
-                input.value = text;
-                input.select();
-                document.execCommand("copy");
-                document.body.removeChild(input);
-                btn.innerText = "¡Copiado!";
-                setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
-            }
-        }
-    </script>
+<script>
+async function copyIP(){
+    const btn = document.querySelector(".copy-btn");
+    const text = "play.kubeon.xyz";
+    try{
+        await navigator.clipboard.writeText(text);
+        btn.innerText = "¡Copiado!";
+        setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
+    }catch(err){
+        const input = document.createElement("input");
+        document.body.appendChild(input);
+        input.value = text;
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        btn.innerText = "¡Copiado!";
+        setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
+    }
+}
+</script>
+
 </body>
 </html>
