@@ -1,444 +1,277 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Kubeon</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Montserrat', sans-serif;
-}
-
-body{
-    background:#090b11;
-    color:white;
-    overflow:hidden;
-}
-
-/* FONDO */
-.background{
-    position:absolute;
-    width:100%;
-    height:100%;
-    z-index:-1;
-    overflow:hidden;
-}
-
-.glow{
-    position:absolute;
-    width:700px;
-    height:700px;
-    border-radius:50%;
-    filter:blur(150px);
-    opacity:.15;
-    animation:float 8s ease-in-out infinite;
-}
-
-.glow1{
-    background:#7e22ce;
-    top:-250px;
-    left:-200px;
-}
-
-.glow2{
-    background:#581c87;
-    bottom:-250px;
-    right:-200px;
-    animation-delay:4s;
-}
-
-@keyframes float{
-
-    0%{
-        transform:translateY(0px) scale(1);
-    }
-
-    50%{
-        transform:translateY(25px) scale(1.08);
-    }
-
-    100%{
-        transform:translateY(0px) scale(1);
-    }
-
-}
-
-/* CONTENIDO */
-.container{
-
-    height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    flex-direction:column;
-
-    text-align:center;
-
-    padding:20px;
-
-    transform:translateY(-55px);
-}
-
-/* LOGO */
-.logo{
-
-    width:300px;
-
-    margin-bottom:-15px;
-
-    filter:
-    drop-shadow(0 0 18px rgba(147,51,234,.35));
-
-    transition:
-    transform .3s ease,
-    filter .3s ease;
-}
-
-.logo:hover{
-
-    transform:scale(1.04);
-
-    filter:
-    drop-shadow(0 0 30px rgba(168,85,247,.55));
-}
-
-/* TITULO */
-h1{
-
-    font-size:82px;
-
-    line-height:1;
-
-    letter-spacing:2px;
-
-    font-weight:800;
-
-    color:#f3e8ff;
-
-    text-shadow:
-    0 0 10px rgba(168,85,247,.55),
-    0 0 25px rgba(168,85,247,.28),
-    0 0 45px rgba(168,85,247,.15);
-}
-
-/* SUBTITULO */
-.subtitle{
-
-    margin-top:14px;
-
-    font-size:20px;
-
-    font-weight:600;
-
-    color:#f5f5f5;
-
-    opacity:.9;
-}
-
-/* VERSION */
-.version{
-
-    margin-top:10px;
-
-    color:#9ca3af;
-
-    font-size:17px;
-
-    font-weight:500;
-}
-
-/* CAJA IP */
-.ip-box{
-
-    margin-top:35px;
-
-    background:rgba(18,18,25,.92);
-
-    border:1px solid rgba(168,85,247,.4);
-
-    border-radius:20px;
-
-    padding:22px 26px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:22px;
-
-    backdrop-filter:blur(10px);
-
-    box-shadow:
-    0 0 25px rgba(126,34,206,.18),
-    inset 0 0 10px rgba(255,255,255,.02);
-
-    transition:
-    transform .25s ease,
-    border .25s ease,
-    box-shadow .25s ease;
-}
-
-.ip-box:hover{
-
-    transform:scale(1.02);
-
-    border-color:#a855f7;
-
-    box-shadow:
-    0 0 35px rgba(147,51,234,.25);
-}
-
-/* TEXTO IP */
-.ip{
-
-    font-size:30px;
-
-    font-weight:700;
-
-    letter-spacing:.5px;
-}
-
-/* BOTON COPIAR */
-.copy-btn{
-
-    background:#7e22ce;
-
-    border:none;
-
-    padding:18px 34px;
-
-    border-radius:15px;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:
-    transform .25s ease,
-    background .25s ease,
-    box-shadow .25s ease;
-}
-
-.copy-btn:hover{
-
-    background:#9333ea;
-
-    transform:translateY(-3px) scale(1.04);
-
-    box-shadow:
-    0 10px 25px rgba(147,51,234,.35),
-    0 0 35px rgba(147,51,234,.25);
-}
-
-/* BOTONES */
-.buttons{
-
-    margin-top:28px;
-
-    display:flex;
-
-    gap:24px;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-}
-
-/* BOTON */
-.btn{
-
-    text-decoration:none;
-
-    padding:34px 75px;
-
-    border-radius:22px;
-
-    background:rgba(18,18,25,.92);
-
-    border:1px solid rgba(168,85,247,.38);
-
-    color:white;
-
-    font-size:25px;
-
-    font-weight:700;
-
-    min-width:280px;
-
-    backdrop-filter:blur(8px);
-
-    transition:
-    transform .25s ease,
-    background .25s ease,
-    box-shadow .25s ease,
-    border .25s ease;
-}
-
-/* HOVER */
-.btn:hover{
-
-    transform:translateY(-4px) scale(1.05);
-
-    background:#7e22ce;
-
-    border-color:#d8b4fe;
-
-    box-shadow:
-    0 10px 30px rgba(147,51,234,.35),
-    0 0 40px rgba(147,51,234,.22);
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-
-    h1{
-        font-size:62px;
-    }
-
-    .logo{
-        width:220px;
-    }
-
-    .ip-box{
-        flex-direction:column;
-    }
-
-    .ip{
-        font-size:24px;
-    }
-
-    .btn{
-        width:100%;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubeon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: #090b11;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* FONDO */
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .glow {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: .15;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .glow1 {
+            background: #7e22ce;
+            top: -250px;
+            left: -200px;
+        }
+
+        .glow2 {
+            background: #581c87;
+            bottom: -250px;
+            right: -200px;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(25px) scale(1.08); }
+            100% { transform: translateY(0px) scale(1); }
+        }
+
+        /* ANIMACIÓN DE RESPIRACIÓN PARA EL LOGO */
+        @keyframes breathe {
+            0% { transform: scale(1); filter: drop-shadow(0 0 18px rgba(147,51,234,.35)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 35px rgba(168,85,247,.50)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 18px rgba(147,51,234,.35)); }
+        }
+
+        /* CONTENIDO */
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            /* Subimos el contenedor más arriba */
+            transform: translateY(-80px); 
+        }
+
+        /* LOGO MODIFICADO */
+        .logo {
+            width: 480px; /* Logo más grande */
+            max-width: 90vw;
+            margin-bottom: 10px; /* Espacio ajustado ya que no hay H1 */
+            animation: breathe 4s ease-in-out infinite; /* Animación de respiración */
+            transition: transform .3s ease;
+        }
+
+        .logo:hover {
+            cursor: pointer;
+            /* El hover se suma a la escala de la animación si se desea, 
+               o simplemente mantiene el efecto */
+        }
+
+        /* SUBTITULO */
+        .subtitle {
+            margin-top: 5px;
+            font-size: 22px;
+            font-weight: 600;
+            color: #f5f5f5;
+            opacity: .9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* VERSION */
+        .version {
+            margin-top: 8px;
+            color: #9ca3af;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        /* CAJA IP */
+        .ip-box {
+            margin-top: 30px;
+            background: rgba(18,18,25,.92);
+            border: 1px solid rgba(168,85,247,.4);
+            border-radius: 20px;
+            padding: 22px 26px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 25px rgba(126,34,206,.18), inset 0 0 10px rgba(255,255,255,.02);
+            transition: transform .25s ease, border .25s ease, box-shadow .25s ease;
+        }
+
+        .ip-box:hover {
+            transform: scale(1.02);
+            border-color: #a855f7;
+            box-shadow: 0 0 35px rgba(147,51,234,.25);
+        }
+
+        /* TEXTO IP */
+        .ip {
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: .5px;
+        }
+
+        /* BOTON COPIAR */
+        .copy-btn {
+            background: #7e22ce;
+            border: none;
+            padding: 18px 34px;
+            border-radius: 15px;
+            color: white;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+        }
+
+        .copy-btn:hover {
+            background: #9333ea;
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 10px 25px rgba(147,51,234,.35), 0 0 35px rgba(147,51,234,.25);
+        }
+
+        /* BOTONES */
+        .buttons {
+            margin-top: 28px;
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* BOTON */
+        .btn {
+            text-decoration: none;
+            padding: 25px 60px;
+            border-radius: 22px;
+            background: rgba(18,18,25,.92);
+            border: 1px solid rgba(168,85,247,.38);
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            min-width: 250px;
+            backdrop-filter: blur(8px);
+            transition: transform .25s ease, background .25s ease, box-shadow .25s ease, border .25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            background: #7e22ce;
+            border-color: #d8b4fe;
+            box-shadow: 0 10px 30px rgba(147,51,234,.35), 0 0 40px rgba(147,51,234,.22);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:900px){
+            .logo {
+                width: 320px;
+            }
+            .ip-box {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .ip {
+                font-size: 22px;
+            }
+            .btn {
+                width: 100%;
+                padding: 20px;
+            }
+            .container {
+                transform: translateY(-40px);
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- FONDO -->
-<div class="background">
-
-    <div class="glow glow1"></div>
-
-    <div class="glow glow2"></div>
-
-</div>
-
-<!-- CONTENIDO -->
-<div class="container">
-
-    <!-- LOGO -->
-    <img src="logo.png" class="logo">
-
-    <!-- TITULO -->
-    <h1>KUBEON</h1>
-
-    <!-- SUBTITULO -->
-    <div class="subtitle">
-        Tu Aventura Empieza Ahora
+    <!-- FONDO -->
+    <div class="background">
+        <div class="glow glow1"></div>
+        <div class="glow glow2"></div>
     </div>
 
-    <!-- VERSION -->
-    <div class="version">
-        Minecraft Java 1.12+ • Última Versión
-    </div>
+    <!-- CONTENIDO -->
+    <div class="container">
 
-    <!-- IP -->
-    <div class="ip-box">
+        <!-- LOGO -->
+        <img src="logo.png" class="logo" alt="Logo">
 
-        <div class="ip">
-            play.kubeon.xyz
+        <!-- SUBTITULO -->
+        <div class="subtitle">
+            Tu Aventura Empieza Ahora
         </div>
 
-        <button class="copy-btn" onclick="copyIP()">
-            Copiar IP
-        </button>
+        <!-- VERSION -->
+        <div class="version">
+            Minecraft Java 1.12+ • Última Versión
+        </div>
+
+        <!-- IP -->
+        <div class="ip-box">
+            <div class="ip">play.kubeon.xyz</div>
+            <button class="copy-btn" onclick="copyIP()">
+                Copiar IP
+            </button>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="buttons">
+            <a class="btn" href="https://discord.gg/yBwJqHF2xk" target="_blank">Discord</a>
+            <a class="btn" href="#">Tienda</a>
+            <a class="btn" href="#">Wiki</a>
+        </div>
 
     </div>
 
-    <!-- BOTONES -->
-    <div class="buttons">
-
-        <a class="btn" href="https://discord.gg/yBwJqHF2xk" target="_blank">
-            Discord
-        </a>
-
-        <a class="btn" href="#">
-            Tienda
-        </a>
-
-        <a class="btn" href="#">
-            Wiki
-        </a>
-
-    </div>
-
-</div>
-
-<script>
-
-async function copyIP(){
-
-    const btn = document.querySelector(".copy-btn");
-
-    try{
-
-        await navigator.clipboard.writeText("play.kubeon.xyz");
-
-        btn.innerText = "¡Copiado!";
-
-        setTimeout(() => {
-
-            btn.innerText = "Copiar IP";
-
-        }, 3000);
-
-    }catch(err){
-
-        const text = "play.kubeon.xyz";
-
-        const input = document.createElement("input");
-
-        document.body.appendChild(input);
-
-        input.value = text;
-
-        input.select();
-
-        document.execCommand("copy");
-
-        document.body.removeChild(input);
-
-        btn.innerText = "¡Copiado!";
-
-        setTimeout(() => {
-
-            btn.innerText = "Copiar IP";
-
-        }, 3000);
-    }
-}
-
-</script>
-
+    <script>
+        async function copyIP(){
+            const btn = document.querySelector(".copy-btn");
+            const ipText = "play.kubeon.xyz";
+            try {
+                await navigator.clipboard.writeText(ipText);
+                btn.innerText = "¡Copiado!";
+                setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
+            } catch(err) {
+                const input = document.createElement("input");
+                document.body.appendChild(input);
+                input.value = ipText;
+                input.select();
+                document.execCommand("copy");
+                document.body.removeChild(input);
+                btn.innerText = "¡Copiado!";
+                setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
+            }
+        }
+    </script>
 </body>
 </html>
