@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kubeon - Servidor de Minecraft</title>
-    
-    <!-- Fuentes -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Kubeon Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -19,12 +17,10 @@
         body {
             background: #090b11;
             color: white;
-            overflow: hidden; /* Evita scroll innecesario */
-            height: 100vh;
-            width: 100vw;
+            overflow: hidden;
         }
 
-        /* FONDO DINÁMICO */
+        /* FONDO (Tus luces originales) */
         .background {
             position: absolute;
             width: 100%;
@@ -51,13 +47,13 @@
             50% { transform: translateY(25px) scale(1.08); }
         }
 
-        /* ANIMACIÓN DE RESPIRACIÓN (LOGO) */
+        /* ANIMACIÓN DE RESPIRACIÓN */
         @keyframes breathe {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(147,51,234,.3)); }
-            50% { transform: scale(1.06); filter: drop-shadow(0 0 35px rgba(168,85,247,.5)); }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(147,51,234,.35)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 35px rgba(168,85,247,.55)); }
         }
 
-        /* CONTENEDOR PRINCIPAL - POSICIÓN MÁS ALTA */
+        /* CONTENIDO - Ahora más arriba */
         .container {
             height: 100vh;
             display: flex;
@@ -66,59 +62,59 @@
             flex-direction: column;
             text-align: center;
             padding: 20px;
-            transform: translateY(-80px); /* Ajuste para subir todo el contenido */
+            transform: translateY(-80px); /* Subimos todo el bloque */
         }
 
-        /* LOGO AGRANDADO */
+        /* LOGO - Mucho más grande y con respiración */
         .logo {
-            width: 480px;
+            width: 450px; 
             max-width: 90vw;
-            height: auto;
             margin-bottom: 20px;
             animation: breathe 4s ease-in-out infinite;
-            pointer-events: none; /* Para que no interfiera con clicks */
         }
 
         /* TEXTOS */
         .subtitle {
-            font-size: 24px;
-            font-weight: 600;
-            color: #f5f5f5;
+            margin-top: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #f3e8ff;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(168,85,247,0.5);
         }
 
         .version {
+            margin-top: 5px;
             color: #9ca3af;
-            font-size: 18px;
-            font-weight: 400;
-            margin-bottom: 30px;
+            font-size: 17px;
+            font-weight: 500;
         }
 
         /* CAJA IP */
         .ip-box {
+            margin-top: 30px;
             background: rgba(18,18,25,.92);
             border: 1px solid rgba(168,85,247,.4);
             border-radius: 20px;
-            padding: 15px 25px;
+            padding: 18px 26px;
             display: flex;
             align-items: center;
             gap: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            transition: all .3s ease;
+            box-shadow: 0 0 25px rgba(126,34,206,.18);
+            transition: all .25s ease;
         }
 
         .ip-box:hover {
-            border-color: #a855f7;
             transform: scale(1.02);
+            border-color: #a855f7;
         }
 
         .ip {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
-            color: #fff;
+            letter-spacing: .5px;
         }
 
         .copy-btn {
@@ -127,7 +123,7 @@
             padding: 12px 25px;
             border-radius: 12px;
             color: white;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             transition: all .25s ease;
@@ -136,12 +132,11 @@
         .copy-btn:hover {
             background: #9333ea;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(147,51,234,0.4);
         }
 
-        /* BOTONES DE ENLACE */
+        /* BOTONES */
         .buttons {
-            margin-top: 40px;
+            margin-top: 35px;
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
@@ -150,30 +145,29 @@
 
         .btn {
             text-decoration: none;
-            padding: 20px 50px;
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(168,85,247,.3);
+            padding: 18px 45px;
+            border-radius: 15px;
+            background: rgba(18,18,25,.92);
+            border: 1px solid rgba(168,85,247,.38);
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
-            min-width: 220px;
-            transition: all .3s ease;
+            min-width: 200px;
+            transition: all .25s ease;
         }
 
         .btn:hover {
+            transform: translateY(-4px);
             background: #7e22ce;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(147,51,234,0.3);
+            box-shadow: 0 10px 25px rgba(147,51,234,.3);
         }
 
         /* RESPONSIVE */
-        @media(max-width: 768px){
-            .logo { width: 320px; }
-            .container { transform: translateY(-30px); }
-            .ip-box { flex-direction: column; width: 100%; }
-            .ip { font-size: 20px; }
-            .btn { width: 100%; min-width: unset; }
+        @media(max-width:768px){
+            .logo { width: 300px; }
+            .container { transform: translateY(-40px); }
+            .ip-box { flex-direction: column; padding: 20px; }
+            .btn { width: 100%; }
         }
     </style>
 </head>
@@ -185,20 +179,16 @@
     </div>
 
     <div class="container">
-        <!-- Logo con animación de respiración -->
-        <img src="logo.png" class="logo" alt="Logo Kubeon">
+        <img src="logo.png" class="logo">
 
-        <!-- Textos movidos hacia arriba junto con la IP -->
         <div class="subtitle">Tu Aventura Empieza Ahora</div>
         <div class="version">Minecraft Java 1.12+ • Última Versión</div>
 
-        <!-- Caja de IP -->
         <div class="ip-box">
-            <div class="ip" id="server-ip">play.kubeon.xyz</div>
+            <div class="ip">play.kubeon.xyz</div>
             <button class="copy-btn" onclick="copyIP()">Copiar IP</button>
         </div>
 
-        <!-- Botones inferiores -->
         <div class="buttons">
             <a class="btn" href="https://discord.gg/yBwJqHF2xk" target="_blank">Discord</a>
             <a class="btn" href="#">Tienda</a>
@@ -207,40 +197,25 @@
     </div>
 
     <script>
-        function copyIP() {
-            const ipText = "play.kubeon.xyz";
+        async function copyIP(){
             const btn = document.querySelector(".copy-btn");
-
-            // Método moderno
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(ipText).then(() => {
-                    updateButton();
-                });
-            } else {
-                // Método de respaldo para navegadores antiguos o sin HTTPS
-                const textArea = document.createElement("textarea");
-                textArea.value = ipText;
-                document.body.appendChild(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    updateButton();
-                } catch (err) {
-                    console.error('Error al copiar', err);
-                }
-                document.body.removeChild(textArea);
-            }
-
-            function updateButton() {
+            const text = "play.kubeon.xyz";
+            try {
+                await navigator.clipboard.writeText(text);
                 btn.innerText = "¡Copiado!";
-                btn.style.background = "#22c55e"; // Color verde de éxito
-                setTimeout(() => {
-                    btn.innerText = "Copiar IP";
-                    btn.style.background = "#7e22ce";
-                }, 2000);
+                setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
+            } catch(err) {
+                // Fallback por si falla el clipboard
+                const input = document.createElement("input");
+                document.body.appendChild(input);
+                input.value = text;
+                input.select();
+                document.execCommand("copy");
+                document.body.removeChild(input);
+                btn.innerText = "¡Copiado!";
+                setTimeout(() => { btn.innerText = "Copiar IP"; }, 3000);
             }
         }
     </script>
-
 </body>
 </html>
