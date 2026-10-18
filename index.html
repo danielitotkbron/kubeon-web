@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* NAVBAR (ESTILO HOLY.GG) */
+        /* NAVBAR */
         .navbar {
             position: fixed;
             top: 0;
@@ -40,25 +40,87 @@
             z-index: 1000;
         }
 
-        .nav-logo {
-            height: 40px;
+        .nav-logo-text {
+            color: white; 
+            font-weight: 900; 
+            font-size: 24px; 
+            text-decoration: none;
+            letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             align-items: center;
         }
 
-        .nav-links a {
+        /* Estilos para el menú desplegable */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown > a {
             color: #d1d5db;
             text-decoration: none;
             font-size: 15px;
             font-weight: 600;
             transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 10px 0;
         }
 
-        .nav-links a:hover {
+        .dropdown > a:hover {
+            color: #a855f7;
+        }
+
+        /* La flechita animada */
+        .dropdown > a::after {
+            content: "▼";
+            font-size: 10px;
+            transition: transform 0.3s;
+        }
+
+        .dropdown:hover > a::after {
+            transform: rotate(180deg);
+        }
+
+        /* Contenido del menú desplegable */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #151122;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #d1d5db;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(168, 85, 247, 0.1);
             color: #a855f7;
         }
 
@@ -84,25 +146,23 @@
             display: flex;
             align-items: center;
             padding: 0 10%;
-            margin-top: 80px; /* Espacio para el navbar */
+            margin-top: 80px;
             overflow: hidden;
         }
 
-        /* IMAGEN DE FONDO DEL BANNER */
+        /* AQUÍ PONES TU IMAGEN DE FONDO */
         .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* PON AQUÍ TU IMAGEN DE FONDO (Minecraft, Roblox, etc.) */
-            background-image: url('https://images.unsplash.com/photo-1607513746994-51f730a44832?q=80&w=2000&auto=format&fit=crop'); 
+            background-image: url('banner.jpg'); /* <-- CAMBIA 'banner.jpg' POR EL NOMBRE DE TU IMAGEN */
             background-size: cover;
             background-position: center;
             z-index: -2;
         }
 
-        /* CAPA OSCURA PARA QUE EL TEXTO SE LEA BIEN */
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -307,7 +367,6 @@
             font-size: 14px;
         }
 
-        /* RESPONSIVE */
         @media(max-width: 1024px) {
             .hero-content h1 { font-size: 48px; }
             .service-row, .service-row.reverse {
@@ -319,7 +378,7 @@
 
         @media(max-width: 768px) {
             .navbar { padding: 0 20px; }
-            .nav-links { display: none; } /* Ocultar links en móvil */
+            .nav-links { display: none; } 
             .hero { padding: 0 5%; text-align: center; }
             .hero-content h1 { font-size: 36px; }
             .hero-buttons { flex-direction: column; }
@@ -337,15 +396,29 @@
 
     <!-- BARRA DE NAVEGACIÓN -->
     <nav class="navbar">
-        <a href="#">
-            <!-- Reemplaza esto por tu logo.png si quieres, o deja el texto -->
-            <h2 style="color: white; font-weight: 900; font-size: 24px;">KUBEON</h2>
-        </a>
+        <a href="#" class="nav-logo-text">KUBEON</a>
+        
         <div class="nav-links">
-            <a href="#discord">Discord</a>
-            <a href="#roblox">Roblox</a>
-            <a href="#minecraft">Minecraft</a>
+            <!-- Menú Desplegable Servicios -->
+            <div class="dropdown">
+                <a href="#servicios">Servicios</a>
+                <div class="dropdown-content">
+                    <a href="#discord">Discord</a>
+                    <a href="#roblox">Roblox</a>
+                    <a href="#minecraft">Minecraft</a>
+                </div>
+            </div>
+            
+            <!-- Enlace Nosotros -->
+            <div class="dropdown">
+                <a href="#">Nosotros</a>
+                <div class="dropdown-content">
+                    <a href="#">Sobre Kubeon</a>
+                    <a href="#">Nuestro Equipo</a>
+                </div>
+            </div>
         </div>
+
         <a href="https://discord.gg/yBwJqHF2xk" target="_blank" class="nav-btn">Contactar</a>
     </nav>
 
@@ -393,9 +466,10 @@
                 </ul>
             </div>
             <div class="service-gallery">
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=1000&auto=format&fit=crop" alt="Discord 1"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?q=80&w=1000&auto=format&fit=crop" alt="Discord 2"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop" alt="Discord 3"></div>
+                <!-- CAMBIA LOS NOMBRES DE LAS IMÁGENES AQUÍ -->
+                <div class="gallery-item"><img src="discord-1.png" alt="Discord 1"></div>
+                <div class="gallery-item"><img src="discord-2.png" alt="Discord 2"></div>
+                <div class="gallery-item"><img src="discord-3.png" alt="Discord 3"></div>
             </div>
         </div>
 
@@ -415,9 +489,10 @@
                 </ul>
             </div>
             <div class="service-gallery">
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1612404730960-5c71577fca11?q=80&w=1000&auto=format&fit=crop" alt="Roblox 1"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1605899435973-ca2d1a8861cf?q=80&w=1000&auto=format&fit=crop" alt="Roblox 2"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=1000&auto=format&fit=crop" alt="Roblox 3"></div>
+                <!-- CAMBIA LOS NOMBRES DE LAS IMÁGENES AQUÍ -->
+                <div class="gallery-item"><img src="roblox-1.png" alt="Roblox 1"></div>
+                <div class="gallery-item"><img src="roblox-2.png" alt="Roblox 2"></div>
+                <div class="gallery-item"><img src="roblox-3.png" alt="Roblox 3"></div>
             </div>
         </div>
 
@@ -437,9 +512,10 @@
                 </ul>
             </div>
             <div class="service-gallery">
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1607513746994-51f730a44832?q=80&w=1000&auto=format&fit=crop" alt="Minecraft 1"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1627856013091-fed6e4e30025?q=80&w=1000&auto=format&fit=crop" alt="Minecraft 2"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1587573089734-599851b0c5fa?q=80&w=1000&auto=format&fit=crop" alt="Minecraft 3"></div>
+                <!-- CAMBIA LOS NOMBRES DE LAS IMÁGENES AQUÍ -->
+                <div class="gallery-item"><img src="minecraft-1.png" alt="Minecraft 1"></div>
+                <div class="gallery-item"><img src="minecraft-2.png" alt="Minecraft 2"></div>
+                <div class="gallery-item"><img src="minecraft-3.png" alt="Minecraft 3"></div>
             </div>
         </div>
 
