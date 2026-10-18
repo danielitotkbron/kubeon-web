@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kubeon - Servicios de Desarrollo</title>
+    <title>Kubeon - Desarrollo y Comunidades</title>
     
-    <!-- Mantenemos tu logo (asegúrate de tenerlo en la misma carpeta) -->
     <link rel="icon" type="image/png" href="logo.png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
@@ -26,7 +24,7 @@
             min-height: 100vh;
         }
 
-        /* FONDO ANIMADO (IDÉNTICO AL TUYO) */
+        /* FONDO ANIMADO */
         .background {
             position: fixed;
             width: 100%;
@@ -72,25 +70,24 @@
             text-align: center;
         }
 
-        /* HEADER (LOGO MAS PEQUEÑO) */
+        /* HEADER */
         .logo {
-            width: 280px; 
-            max-width: 80vw;
+            width: 300px; 
+            max-width: 85vw;
             margin-bottom: 20px;
             animation: breathe 4s ease-in-out infinite;
             pointer-events: none; 
         }
 
-        /* TEXTOS HERO */
-        .subtitle {
-            font-size: 28px;
+        .main-title {
+            font-size: 32px;
             font-weight: 800;
             color: #f5f5f5;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             line-height: 1.2;
         }
 
-        .subtitle span {
+        .main-title span {
             color: #a855f7;
         }
 
@@ -98,12 +95,32 @@
             color: #9ca3af;
             font-size: 18px;
             font-weight: 500;
-            max-width: 700px;
-            margin: 0 auto 50px auto;
+            max-width: 800px;
+            margin: 0 auto 60px auto;
             line-height: 1.6;
         }
 
-        /* SECCIÓN DE SERVICIOS (TARJETAS) */
+        /* SUBTÍTULO DE SERVICIOS */
+        .section-subtitle {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-subtitle::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: #a855f7;
+            bottom: -10px;
+            left: 25%;
+            border-radius: 2px;
+        }
+
+        /* SECCIÓN DE SERVICIOS (TUS CUADRADOS) */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -122,8 +139,6 @@
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            position: relative;
-            overflow: hidden;
         }
 
         .service-card:hover {
@@ -132,69 +147,51 @@
             box-shadow: 0 10px 40px rgba(126, 34, 206, .2);
         }
 
+        /* ICONO EN LA TARJETA */
+        .service-icon {
+            width: 45px;
+            height: 45px;
+            fill: #a855f7;
+            margin-bottom: 20px;
+        }
+
         .service-title {
             font-size: 22px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        .service-price {
-            font-size: 32px;
-            font-weight: 800;
-            color: #a855f7;
-            margin-bottom: 25px;
-        }
-
-        .service-price span {
-            font-size: 16px;
-            color: #9ca3af;
-            font-weight: 500;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-bottom: 35px;
+        .service-desc {
+            color: #d1d5db;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
             flex-grow: 1;
         }
 
-        .service-features li {
-            color: #d1d5db;
-            font-size: 15px;
-            margin-bottom: 12px;
+        .service-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .service-list li {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 8px;
             display: flex;
             align-items: flex-start;
             gap: 10px;
         }
 
-        /* Checkmark morado */
-        .service-features li::before {
-            content: "✓";
+        .service-list li::before {
+            content: "•";
             color: #a855f7;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 20px;
+            line-height: 1;
         }
 
-        /* BOTON DE LA TARJETA */
-        .card-btn {
-            text-decoration: none;
-            background: #7e22ce;
-            color: white;
-            padding: 16px;
-            border-radius: 14px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 16px;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
-        }
-
-        .card-btn:hover {
-            background: #9333ea;
-            border-color: #d8b4fe;
-            transform: scale(1.02);
-        }
-
-        /* BOTON FLOTANTE / FINAL DE CONTACTO */
+        /* SECCIÓN DE CONTACTO */
         .contact-section {
             background: rgba(18, 18, 25, .6);
             border: 1px solid rgba(168, 85, 247, .2);
@@ -202,6 +199,7 @@
             padding: 50px 30px;
             width: 100%;
             backdrop-filter: blur(10px);
+            margin-top: 20px;
         }
 
         .contact-section h2 {
@@ -226,7 +224,7 @@
             border-radius: 18px;
             background: #7e22ce;
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             transition: all 0.2s ease;
             border: 1px solid transparent;
@@ -248,10 +246,11 @@
 
         /* RESPONSIVE */
         @media(max-width: 768px) {
-            .subtitle { font-size: 24px; }
+            .main-title { font-size: 26px; }
             .description { font-size: 16px; }
             .services-grid { grid-template-columns: 1fr; }
             .btn-main { width: 100%; padding: 20px; }
+            .logo { width: 220px; }
         }
     </style>
 </head>
@@ -268,62 +267,67 @@
         <!-- LOGO -->
         <img src="logo.png" class="logo" alt="Kubeon Logo">
 
-        <!-- HERO TEXT -->
-        <div class="subtitle">Soluciones Web por <span>Kubeon</span></div>
+        <!-- QUE ES KUBEON -->
+        <div class="main-title">Bienvenido a <span>Kubeon</span></div>
         <div class="description">
-            Soy desarrollador especializado en crear experiencias digitales rápidas, escalables y visualmente impactantes. Transformo ideas en código funcional.
+            Somos una empresa de desarrollo especializada en crear, optimizar y escalar comunidades digitales. Nos enfocamos en brindar soluciones técnicas de alto nivel para proyectos de Discord, Minecraft y Roblox, asegurando que tu infraestructura y tus jugadores tengan la mejor experiencia posible.
         </div>
 
-        <!-- TARJETAS DE SERVICIOS -->
+        <!-- SERVICIOS -->
+        <div class="section-subtitle">Contamos con Diferentes Servicios:</div>
+
         <div class="services-grid">
             
-            <!-- Servicio 1 -->
+            <!-- Servicio 1: Discord -->
             <div class="service-card">
-                <div class="service-title">Landing Page</div>
-                <div class="service-price">$150 <span>/ proyecto</span></div>
-                <ul class="service-features">
-                    <li>Diseño moderno y responsive (móvil/PC)</li>
-                    <li>Optimización SEO y velocidad de carga</li>
-                    <li>Despliegue en GitHub Pages o Vercel</li>
-                    <li>Formulario de contacto funcional</li>
+                <!-- Icono Discord -->
+                <svg class="service-icon" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                <div class="service-title">Desarrollo para Discord</div>
+                <p class="service-desc">Creamos y configuramos la infraestructura perfecta para tu servidor. Desde bots personalizados hasta la organización completa de tu comunidad.</p>
+                <ul class="service-list">
+                    <li>Desarrollo y configuración de Bots</li>
+                    <li>Estructuración de canales y roles</li>
+                    <li>Sistemas de seguridad y moderación</li>
+                    <li>Automatización de comunidad</li>
                 </ul>
-                <a href="#contacto" class="card-btn">Solicitar Servicio</a>
             </div>
 
-            <!-- Servicio 2 -->
+            <!-- Servicio 2: Roblox -->
             <div class="service-card">
-                <div class="service-title">Aplicación Web</div>
-                <div class="service-price">Desde $500 <span>/ proyecto</span></div>
-                <ul class="service-features">
-                    <li>Desarrollo Frontend (React, Astro, Next.js)</li>
-                    <li>Backend a medida (Node.js, Python)</li>
-                    <li>Base de datos y Panel de administración</li>
-                    <li>Integración con APIs y pasarelas de pago</li>
+                <!-- Icono Cubo / Juego -->
+                <svg class="service-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                <div class="service-title">Desarrollo de Juegos Roblox</div>
+                <p class="service-desc">Llevamos tus ideas al mundo de Roblox. Programamos y diseñamos juegos de cualquier género, enfocados en la diversión y la retención de jugadores.</p>
+                <ul class="service-list">
+                    <li>Programación en Lua</li>
+                    <li>Diseño de mapas y sistemas</li>
+                    <li>Economías internas y Tiendas</li>
+                    <li>Optimización y scripts de juego</li>
                 </ul>
-                <a href="#contacto" class="card-btn">Solicitar Servicio</a>
             </div>
 
-            <!-- Servicio 3 -->
+            <!-- Servicio 3: Minecraft -->
             <div class="service-card">
-                <div class="service-title">Mantenimiento Web</div>
-                <div class="service-price">$50 <span>/ mes</span></div>
-                <ul class="service-features">
-                    <li>Actualización de dependencias</li>
-                    <li>Corrección de bugs y mejoras continuas</li>
-                    <li>Copias de seguridad y monitoreo</li>
-                    <li>Soporte técnico prioritario</li>
+                <!-- Icono Servidor / Bloque -->
+                <svg class="service-icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                <div class="service-title">Plugins y Servidores Minecraft</div>
+                <p class="service-desc">Configuramos y optimizamos tu servidor de Minecraft desde cero. Desarrollamos plugins a medida para que tu modalidad de juego sea única.</p>
+                <ul class="service-list">
+                    <li>Configuración de servidores (Spigot/Paper)</li>
+                    <li>Desarrollo de Plugins a medida</li>
+                    <li>Instalación de mods y protecciones</li>
+                    <li>Optimización de rendimiento (TPS)</li>
                 </ul>
-                <a href="#contacto" class="card-btn">Solicitar Servicio</a>
             </div>
 
         </div>
 
-        <!-- SECCIÓN DE CONTACTO -->
+        <!-- CONTACTO -->
         <div class="contact-section" id="contacto">
-            <h2>¿Listo para llevar tu proyecto al siguiente nivel?</h2>
-            <p>Escríbeme y hablemos sobre lo que necesitas. Sin compromiso.</p>
+            <h2>¿Listo para empezar tu proyecto?</h2>
+            <p>Contáctanos para discutir los detalles de tu comunidad o servidor. Sin compromiso.</p>
             
-            <!-- CAMBIA EL HREF POR TU ENLACE DE DISCORD O UN mailto: -->
+            <!-- CAMBIA EL ENLACE POR TU DISCORD DE SOPORTE O UN MAIL -->
             <a href="https://discord.gg/yBwJqHF2xk" target="_blank" class="btn-main">
                 <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/></svg>
                 Contactar por Discord
