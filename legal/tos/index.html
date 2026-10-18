@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones - Kubeon</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background: #090b11; color: white; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* FONDO ANIMADO */
+        .background { position: fixed; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none; }
+        .glow { position: absolute; width: 700px; height: 700px; border-radius: 50%; filter: blur(150px); opacity: .15; animation: float 8s ease-in-out infinite; }
+        .glow1 { background: #7e22ce; top: -250px; left: -200px; }
+        .glow2 { background: #581c87; bottom: -250px; right: -200px; animation-delay: 4s; }
+        @keyframes float { 0%, 100% { transform: translateY(0px) scale(1); } 50% { transform: translateY(25px) scale(1.08); } }
+
+        /* NAVBAR SIMPLE */
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; height: 80px; background: rgba(9, 11, 17, 0.85); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(168, 85, 247, 0.2); display: flex; align-items: center; padding: 0 5%; z-index: 1000; }
+        .nav-logo { color: white; font-weight: 900; font-size: 24px; text-decoration: none; letter-spacing: 1px; }
+        .nav-back { margin-left: auto; color: #d1d5db; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .nav-back:hover { color: #a855f7; }
+
+        /* CONTENEDOR DE TEXTO */
+        .container { max-width: 900px; margin: 0 auto; padding: 120px 20px 80px; flex: 1; }
+        
+        h1 { font-size: 42px; font-weight: 900; margin-bottom: 40px; text-transform: uppercase; border-bottom: 2px solid #7e22ce; padding-bottom: 20px; display: inline-block; }
+        
+        .content-box { background: rgba(18, 18, 25, 0.7); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 20px; padding: 40px; backdrop-filter: blur(10px); }
+        
+        h2 { font-size: 22px; font-weight: 800; color: #a855f7; margin-top: 30px; margin-bottom: 15px; }
+        h2:first-child { margin-top: 0; }
+        
+        p { color: #d1d5db; font-size: 15px; line-height: 1.8; margin-bottom: 15px; }
+        ul { margin-left: 20px; margin-bottom: 20px; color: #d1d5db; font-size: 15px; line-height: 1.8; }
+        li { margin-bottom: 8px; }
+        strong { color: white; }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: #6b7280; font-size: 14px; }
+
+        @media(max-width: 768px) {
+            h1 { font-size: 32px; }
+            .content-box { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background">
+        <div class="glow glow1"></div>
+        <div class="glow glow2"></div>
+    </div>
+
+    <nav class="navbar">
+        <a href="https://kubeon.xyz" class="nav-logo">KUBEON</a>
+        <a href="https://kubeon.xyz" class="nav-back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Volver al inicio
+        </a>
+    </nav>
+
+    <div class="container">
+        <h1>Términos y Condiciones</h1>
+        
+        <div class="content-box">
+            <p>Bienvenido a <strong>Kubeon</strong>. Al contratar cualquiera de nuestros servicios de desarrollo y configuración (Discord, Minecraft o Roblox), aceptas los siguientes términos y condiciones. Por favor, léelos detenidamente.</p>
+
+            <h2>1. Servicios Ofrecidos</h2>
+            <p>Kubeon se especializa en la configuración de servidores de Discord, instalación y ajuste de plugins para servidores de Minecraft, y programación de scripts (lógica de juego) para Roblox. No realizamos modelado 3D, construcción de mapas ni creación de bots desde cero; nuestro servicio se enfoca en la optimización y puesta a punto de los sistemas existentes.</p>
+
+            <h2>2. Proceso de Solicitud y Pagos</h2>
+            <ul>
+                <li>Las solicitudes se realizan a través de nuestra web oficial. El cliente debe proporcionar un medio de contacto válido (Discord o correo) y los detalles del servicio que necesita.</li>
+                <li>El pago deberá realizarse en su totalidad (o según el acuerdo con el staff) <strong>antes de comenzar el trabajo</strong>. El trabajo no iniciará hasta que el pago sea confirmado por un miembro del equipo.</li>
+                <li>Los precios publicados en la web son de referencia y pueden variar según la complejidad del proyecto. En tales casos, el staff acordará un presupuesto final con el cliente antes de proceder.</li>
+            </ul>
+
+            <h2>3. Plazos y Entregas</h2>
+            <p>Los tiempos de entrega varían según la carga de trabajo de nuestros desarrolladores y la complejidad del servicio solicitado. El staff proporcionará un tiempo estimado al momento de aceptar la solicitud. Nos comprometemos a mantener una comunicación constante hasta la finalización del proyecto.</p>
+
+            <h2>4. Revisiones y Soporte</h2>
+            <p>Cada servicio incluye una fase de pruebas y ajustes. Si al recibir el trabajo el cliente encuentra algún error técnico o algo no corresponde a lo solicitado, Kubeon lo corregirá sin costo adicional. Cualquier cambio que altere el alcance original del proyecto podría generar un costo extra.</p>
+
+            <h2>5. Confidencialidad y Seguridad</h2>
+            <p>Kubeon se compromete a mantener la confidencialidad de las credenciales (accesos a servidores, paneles, etc.) y la información del cliente. Una vez finalizado el trabajo, se recomienda al cliente cambiar sus contraseñas por motivos de seguridad. Kubeon no se hace responsable por modificaciones posteriores realizadas por terceros en los servidores o sistemas configurados.</p>
+
+            <h2>6. Modificaciones de los Términos</h2>
+            <p>Kubeon se reserva el derecho de modificar estos términos y condiciones en cualquier momento. Los cambios entrarán en vigencia a partir de su publicación en esta página. El uso continuo de nuestros servicios implica la aceptación de dichos cambios.</p>
+
+            <h2>7. Contacto</h2>
+            <p>Si tienes alguna duda sobre estos términos, puedes contactarnos a través de nuestro servidor de Discord oficial o por los medios indicados en la página principal.</p>
+
+            <p style="margin-top: 30px; font-size: 13px; color: #6b7280;"><em>Última actualización: Octubre 2023.</em></p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Kubeon. Todos los derechos reservados.
+    </footer>
+
+</body>
+</html>
