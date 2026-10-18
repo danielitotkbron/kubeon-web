@@ -64,6 +64,7 @@
             align-items: center;
             gap: 8px;
             padding: 10px 0;
+            cursor: pointer;
         }
 
         .nav-item:hover {
@@ -82,29 +83,37 @@
             transition: transform 0.3s;
         }
 
+        .dropdown.active > .nav-item::after,
         .dropdown:hover > .nav-item::after {
             transform: rotate(180deg);
         }
 
         .dropdown-content {
-            display: none;
+            display: block;
+            visibility: hidden;
+            opacity: 0;
             position: absolute;
             top: 100%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateY(10px);
             background: #0f0c16;
             border: 1px solid rgba(168, 85, 247, 0.2);
             border-radius: 16px;
             padding: 30px;
             box-shadow: 0px 10px 30px rgba(0,0,0,0.8);
-            min-width: 700px; /* Ancho para las 3 columnas */
+            min-width: 700px;
             z-index: 1001;
-            margin-top: 10px;
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+            pointer-events: none; /* Evita que interfiera cuando está oculto */
         }
 
-        .dropdown:hover .dropdown-content {
-            display: flex;
-            gap: 40px;
+        /* Mostrar menú al pasar el ratón o si tiene la clase active (clic) */
+        .dropdown:hover .dropdown-content,
+        .dropdown.active .dropdown-content {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
         }
 
         /* Columnas del Megamenú */
@@ -149,7 +158,7 @@
         .menu-link svg {
             width: 20px;
             height: 20px;
-            fill: #a855f7; /* Iconos morados para Kubeon */
+            fill: #a855f7;
         }
 
         .nav-btn {
@@ -167,7 +176,7 @@
             transform: scale(1.05);
         }
 
-        /* HERO SECTION (EL BANNER) */
+        /* HERO SECTION */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -178,14 +187,13 @@
             overflow: hidden;
         }
 
-        /* AQUÍ PONES TU IMAGEN DE FONDO */
         .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('banner.png'); /* <-- CAMBIA ESTO POR TU IMAGEN */
+            background-image: url('banner.png'); /* Asegúrate de que tu banner se llame así */
             background-size: cover;
             background-position: center;
             z-index: -2;
@@ -197,12 +205,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, #090b11 30%, rgba(9, 11, 17, 0.4) 100%);
+            background: linear-gradient(90deg, #090b11 35%, rgba(9, 11, 17, 0.3) 100%);
             z-index: -1;
         }
 
         .hero-content {
-            max-width: 650px;
+            max-width: 700px;
         }
 
         .hero-tag {
@@ -215,7 +223,7 @@
         }
 
         .hero-content h1 {
-            font-size: 64px;
+            font-size: 60px;
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 25px;
@@ -273,7 +281,7 @@
             border-color: white;
         }
 
-        /* SECCIÓN DE SERVICIOS (AQUÍ SIGUE TU CONTENIDO) */
+        /* SECCIÓN DE SERVICIOS */
         .services-section {
             padding: 100px 10%;
             background: #090b11;
@@ -386,7 +394,6 @@
             object-fit: cover;
         }
 
-        /* FOOTER */
         footer {
             text-align: center;
             padding: 40px;
@@ -408,6 +415,7 @@
             .navbar { padding: 0 20px; }
             .nav-links { display: none; } 
             .hero { padding: 0 5%; text-align: center; }
+            .hero-overlay { background: rgba(9, 11, 17, 0.8); } /* Oscurece más en móvil para leer bien */
             .hero-content h1 { font-size: 36px; }
             .hero-buttons { flex-direction: column; }
             .services-section { padding: 60px 5%; }
@@ -427,15 +435,13 @@
         <a href="#" class="nav-logo-text">KUBEON</a>
         
         <div class="nav-links">
-            <!-- Enlace directo a services.kubeon.xyz -->
             <a href="https://services.kubeon.xyz" class="nav-item">Servicios</a>
             
             <!-- Menú Desplegable Nosotros -->
-            <div class="dropdown">
-                <a href="#" class="nav-item">Nosotros</a>
+            <div class="dropdown" id="dropdown-nosotros">
+                <a href="#" class="nav-item" id="btn-nosotros">Nosotros</a>
                 <div class="dropdown-content">
                     
-                    <!-- Columna 1: Kubeon -->
                     <div class="menu-column">
                         <h4>Kubeon</h4>
                         <a href="#" class="menu-link">
@@ -448,7 +454,6 @@
                         </a>
                     </div>
 
-                    <!-- Columna 2: Asistencia -->
                     <div class="menu-column">
                         <h4>Asistencia</h4>
                         <a href="https://discord.gg/yBwJqHF2xk" target="_blank" class="menu-link">
@@ -457,7 +462,6 @@
                         </a>
                     </div>
 
-                    <!-- Columna 3: Legal -->
                     <div class="menu-column">
                         <h4>Legal</h4>
                         <a href="#" class="menu-link">
@@ -488,11 +492,12 @@
         
         <div class="hero-content">
             <span class="hero-tag">BIENVENIDO A KUBEON</span>
-            <h1>Soluciones Web<br>para tu Comunidad</h1>
-            <p>Somos una empresa de desarrollo especializada en crear, optimizar y escalar comunidades digitales. Brindamos soluciones técnicas de alto nivel para proyectos de Discord, Minecraft y Roblox.</p>
+            <!-- TÍTULO CAMBIADO -->
+            <h1>Desarrollo y Configuración<br>para tu Comunidad</h1>
+            <!-- DESCRIPCIÓN CAMBIADA -->
+            <p>En Kubeon nos encargamos de desarrollar, configurar y optimizar la infraestructura técnica de tu comunidad. Brindamos soluciones de alto nivel para proyectos de Discord, Minecraft y Roblox.</p>
             
             <div class="hero-buttons">
-                <!-- Este botón también lleva a la página de servicios -->
                 <a href="https://services.kubeon.xyz" class="btn-primary">
                     Ver Servicios
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -517,15 +522,17 @@
                     <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/></svg>
                     Discord
                 </h3>
-                <p>Creamos y configuramos la infraestructura perfecta para tu servidor. Desde bots personalizados hasta la organización completa de tu comunidad.</p>
+                <p>Configuramos la infraestructura perfecta para tu servidor. Organizamos tu comunidad y dejamos todo listo para que empieces a crecer.</p>
                 <ul class="service-list">
-                    <li>Desarrollo y configuración de Bots</li>
+                    <!-- CAMBIADO: Configuración de bots en vez de desarrollo -->
+                    <li>Configuración de Bots</li>
                     <li>Estructuración de canales y roles</li>
                     <li>Sistemas de seguridad y moderación</li>
                     <li>Automatización de comunidad</li>
                 </ul>
             </div>
             <div class="service-gallery">
+                <!-- Nombres exactos: discord-1.png, discord-2.png, discord-3.png -->
                 <div class="gallery-item"><img src="discord-1.png" alt="Discord 1"></div>
                 <div class="gallery-item"><img src="discord-2.png" alt="Discord 2"></div>
                 <div class="gallery-item"><img src="discord-3.png" alt="Discord 3"></div>
@@ -539,15 +546,17 @@
                     <svg viewBox="0 0 24 24"><path d="M5.1 2.3L2.3 18.9l16.6 2.8 2.8-16.6L5.1 2.3zm6.9 11.9l-1.6-.3.3-1.6 1.6.3-.3 1.6z"/></svg>
                     Roblox
                 </h3>
-                <p>Llevamos tus ideas al mundo de Roblox. Programamos y diseñamos juegos de cualquier género, enfocados en la diversión y la retención de jugadores.</p>
+                <p>Programamos sistemas y mecánicas para tus juegos de Roblox. Nos enfocamos en que el juego funcione perfecto y sea divertido.</p>
                 <ul class="service-list">
-                    <li>Programación en Lua</li>
-                    <li>Diseño de mapas y sistemas</li>
-                    <li>Economías internas y Tiendas</li>
-                    <li>Optimización y scripts de juego</li>
+                    <!-- CAMBIADO: Sin modelado ni animaciones -->
+                    <li>Programación de sistemas en Lua</li>
+                    <li>Optimización de scripts</li>
+                    <li>Economías internas y tiendas</li>
+                    <li>Lógica de juego</li>
                 </ul>
             </div>
             <div class="service-gallery">
+                <!-- Nombres exactos: roblox-1.png, roblox-2.png, roblox-3.png -->
                 <div class="gallery-item"><img src="roblox-1.png" alt="Roblox 1"></div>
                 <div class="gallery-item"><img src="roblox-2.png" alt="Roblox 2"></div>
                 <div class="gallery-item"><img src="roblox-3.png" alt="Roblox 3"></div>
@@ -561,15 +570,17 @@
                     <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 5h14v6H5V5zm0 8h14v6H5v-6z"/></svg>
                     Minecraft
                 </h3>
-                <p>Configuramos y optimizamos tu servidor de Minecraft desde cero. Desarrollamos plugins a medida para que tu modalidad de juego sea única.</p>
+                <p>Configuramos y optimizamos tu servidor de Minecraft desde cero. Instalamos y ajustamos los plugins necesarios para tu modalidad de juego.</p>
                 <ul class="service-list">
+                    <!-- CAMBIADO: Sin construcción, enfocado en configuración -->
                     <li>Configuración de servidores (Spigot/Paper)</li>
-                    <li>Desarrollo de Plugins a medida</li>
-                    <li>Instalación de mods y protecciones</li>
+                    <li>Instalación de plugins</li>
+                    <li>Protecciones y permisos</li>
                     <li>Optimización de rendimiento (TPS)</li>
                 </ul>
             </div>
             <div class="service-gallery">
+                <!-- Nombres exactos: minecraft-1.png, minecraft-2.png, minecraft-3.png -->
                 <div class="gallery-item"><img src="minecraft-1.png" alt="Minecraft 1"></div>
                 <div class="gallery-item"><img src="minecraft-2.png" alt="Minecraft 2"></div>
                 <div class="gallery-item"><img src="minecraft-3.png" alt="Minecraft 3"></div>
@@ -582,5 +593,38 @@
         &copy; 2024 Kubeon. Todos los derechos reservados.
     </footer>
 
+    <!-- SCRIPT PARA EL MENÚ DESPLEGABLE -->
+    <script>
+        const dropdown = document.getElementById('dropdown-nosotros');
+        const btnNosotros = document.getElementById('btn-nosotros');
+        let hoverTimeout;
+
+        // Al hacer clic en "Nosotros", se queda fijo (activa/desactiva la clase 'active')
+        btnNosotros.addEventListener('click', function(e) {
+            e.preventDefault(); // Evita que la página salte hacia arriba
+            dropdown.classList.toggle('active');
+        });
+
+        // Cierra el menú si se hace clic en cualquier otra parte de la página
+        document.addEventListener('click', function(e) {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Lógica para el retraso de 0.2s (200ms) al quitar el mouse
+        dropdown.addEventListener('mouseenter', function() {
+            clearTimeout(hoverTimeout); // Si entramos, cancelamos cualquier cierre pendiente
+        });
+
+        dropdown.addEventListener('mouseleave', function() {
+            hoverTimeout = setTimeout(function() {
+                // Si el menú no está fijo (por clic) y el mouse no está encima, lo cerramos
+                if (!dropdown.classList.contains('active')) {
+                    // La clase CSS ya se encarga de ocultarlo al quitar el :hover
+                }
+            }, 200); // 200 milisegundos = 0.2 segundos
+        });
+    </script>
 </body>
 </html>
